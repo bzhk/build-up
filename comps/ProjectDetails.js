@@ -30,7 +30,7 @@ const ProjectDetailsScreen = TabNavigator({
       fontSize: 15,
     },
     style: {
-      backgroundColor: '#35B989',
+      backgroundColor: '#1abc9c',
     },
     }
   },
@@ -43,7 +43,7 @@ export default class ProjectDetails extends React.Component {
   render() {
 
     return (
-        <ProjectDetailsScreen screenProps={this.props.navigation.state.params.rowData}/>
+        <ProjectDetailsScreen screenProps={this.props.navigation}/>
     );
   }
 }

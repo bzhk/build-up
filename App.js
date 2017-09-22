@@ -4,6 +4,7 @@ import { Constants } from 'expo';
 import { StackNavigator } from 'react-navigation';
 import  MainScreen  from './comps/MainScreen';
 import ProjectDetails from './comps/ProjectDetails';
+import ProceduresDetails from './comps/DetailsComps/Rows/ProceduresDetails';
 
 const styles = StyleSheet.create({
     container: {
@@ -18,6 +19,7 @@ const styles = StyleSheet.create({
 const Navigation = StackNavigator({
   Home: { screen: MainScreen },
   Details: { screen: ProjectDetails},
+  Procedures: { screen: ProceduresDetails},
 });
 
 export default class App extends React.Component {

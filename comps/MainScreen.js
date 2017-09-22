@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import {Projects} from '../data/ExampleProjects';
 import ProjectsList from './ProjectsList';
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

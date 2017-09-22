@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
   btnDetails: {
     padding: 5,
-    backgroundColor: '#35B989',
+    backgroundColor: '#87a5c2',
     flex: 2,
     alignItems: 'center',
   },
@@ -64,5 +64,23 @@ ProjectRow.propTypes = {
       startDate: PropTypes.string.isRequired,
       endDate: PropTypes.string.isRequired,
     }).isRequired,
+    procedures: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        done: PropTypes.bool.isRequired,
+        tasks: PropTypes.arrayOf(
+          PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            done: PropTypes.bool.isRequired,
+          })
+        ),
+      }),
+    ).isRequired,
+    issues: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        solved: PropTypes.bool.isRequired,
+      }),
+    ).isRequired,
   }).isRequired,
 };

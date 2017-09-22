@@ -9,7 +9,7 @@ export const Projects =  [
     procedures:[
       {
         name:'Procedura budowy fundamentów',
-        done: false,
+        done: true,
         tasks:[
           {
             name:'Wykop wykonany na głębokość minimum 1m',

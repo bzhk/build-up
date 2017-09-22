@@ -19,7 +19,7 @@ export default class IssuesInfo extends React.Component {
     title: 'Issues Info',
   };
   render() {
-    const issues = this.props.screenProps.issues;
+    const issues = this.props.screenProps.state.params.rowData.issues;
     return (
       <View style={styles.container}>
         <Text>
@@ -28,4 +28,21 @@ export default class IssuesInfo extends React.Component {
       </View>
     );
   }
+}
+
+IssuesInfo.propTypes = {
+  screenProps: PropTypes.shape({
+    state: PropTypes.shape({
+      params: PropTypes.shape({
+        rowData: PropTypes.shape({
+          issues: PropTypes.arrayOf(
+            PropTypes.shape({
+              name: PropTypes.string.isRequired,
+              solved: PropTypes.bool.isRequired,
+            }),
+          ).isRequired,
+        }).isRequired,
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
 }
