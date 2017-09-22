@@ -31,12 +31,18 @@ export default class ProjectsList extends React.Component {
     };
   }
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
         <ListView
           key={this.state.projects}
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <ProjectRow project={rowData} />}
+          renderRow={(rowData) =>
+              <ProjectRow
+                project={rowData}
+                projectDetails={() => navigate('Details', {rowData})}
+              />
+            }
         />
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>

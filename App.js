@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { Constants } from 'expo';
 import { StackNavigator } from 'react-navigation';
 import  MainScreen  from './comps/MainScreen';
+import ProjectDetails from './comps/ProjectDetails';
 
 const styles = StyleSheet.create({
     container: {
@@ -16,6 +17,7 @@ const styles = StyleSheet.create({
 
 const Navigation = StackNavigator({
   Home: { screen: MainScreen },
+  Details: { screen: ProjectDetails},
 });
 
 export default class App extends React.Component {

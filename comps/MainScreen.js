@@ -20,11 +20,13 @@ export default class MainScreen extends React.Component {
   static navigationOptions = {
     title: 'buildUP',
   };
-  
+
   render() {
+
     return (
       <View style={styles.container}>
         <ProjectsList
+          navigation={this.props.navigation}
           projects={this.state.Projects}
           />
       </View>

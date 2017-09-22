@@ -33,18 +33,20 @@ const styles = StyleSheet.create({
 export default class ProjectRow extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
-    console.log("ProjectRow");
   }
 
   render(){
+
     return (
       <View style={styles.container}>
         <Text style={styles.label}>
-            {this.props.project.name + " " + this.props.project.place}
-            {this.props.project.startDate + " / " + this.props.project.endDate}
+            {this.props.project.info.name + " " + this.props.project.info.place}
+            {this.props.project.info.startDate + " / " + this.props.project.info.endDate}
           </Text>
-          <TouchableOpacity style={styles.btnDetails}>
+          <TouchableOpacity
+            style={styles.btnDetails}
+            onPress={this.props.projectDetails}
+            >
             <Text style={styles.txtDetails}>
               Details
             </Text>
@@ -56,9 +58,11 @@ export default class ProjectRow extends React.Component {
 
 ProjectRow.propTypes = {
   project: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    place: PropTypes.string.isRequired,
-    startDate: PropTypes.string.isRequired,
-    endDate: PropTypes.string.isRequired,
+    info: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      place: PropTypes.string.isRequired,
+      startDate: PropTypes.string.isRequired,
+      endDate: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
 };
