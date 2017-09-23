@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
+import { NavigationActions } from 'react-navigation';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,11 +29,18 @@ const styles = StyleSheet.create({
 export default class MainInfo extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
   }
+
+  removeProjectPerm() {
+    this.props.screenProps.state.params.removeProject(this.props.screenProps.state.params.rowData);
+    
+    alert('Project was removed!');
+  }
+
   static navigationOptions = {
     title: 'Main Info',
   };
+
   render() {
     const info = this.props.screenProps.state.params.rowData.info;
     return (
@@ -42,7 +50,10 @@ export default class MainInfo extends React.Component {
           {info.place + "\n"}
           {info.startDate + " - " + info.endDate }
         </Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={this.removeProjectPerm.bind(this)}
+          >
           <Text style={styles.buttonText}>
             Remove Project
           </Text>

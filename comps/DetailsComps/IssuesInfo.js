@@ -23,7 +23,7 @@ export default class IssuesInfo extends React.Component {
     return (
       <View style={styles.container}>
         <Text>
-          {issues[0].name}
+          {}
         </Text>
       </View>
     );

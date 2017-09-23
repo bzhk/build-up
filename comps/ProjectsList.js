@@ -30,8 +30,15 @@ export default class ProjectsList extends React.Component {
       dataSource: ds.cloneWithRows(props.projects),
     };
   }
+
+  componentWillReceiveProps(nextProps) {
+      const dataSource = this.state.dataSource.cloneWithRows(nextProps.projects);
+      this.setState({dataSource});
+  }
+
   render() {
     const {navigate} = this.props.navigation;
+
     return (
       <View style={styles.container}>
         <ListView
@@ -41,11 +48,17 @@ export default class ProjectsList extends React.Component {
               <ProjectRow
                 projectsData={this.props.projects}
                 project={rowData}
-                projectDetails={() => navigate('Details', {rowData})}
+                projectDetails={() => navigate('Details', {
+                  rowData,
+                  removeProject: this.props.removeProject})
+                }
               />
             }
         />
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={this.props.addNewProject}
+          >
           <Text style={styles.buttonText}>
             Add new project
           </Text>

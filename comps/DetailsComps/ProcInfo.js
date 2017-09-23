@@ -37,8 +37,10 @@ export default class ProcInfo extends React.Component {
   static navigationOptions = {
     title: 'Procedures Info',
   };
+
   render() {
     const {navigate} = this.props.screenProps;
+    console.log(this.props.navigation.state)
     return (
       <View style={styles.container}>
           <ListView
@@ -51,7 +53,10 @@ export default class ProcInfo extends React.Component {
               />
               }
           />
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            // onPress={this.props.navigation.state.params.removeProject}
+            >
             <Text style={styles.buttonText}>
               Add new procedure
             </Text>
