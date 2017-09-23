@@ -13,11 +13,8 @@ const styles = StyleSheet.create({
 export default class MainScreen extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-
     }
-
   }
 
   componentDidMount(){

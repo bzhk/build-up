@@ -52,7 +52,7 @@ export default class AddNewTask extends React.Component {
         />
         <TouchableOpacity
           style={styles.addButton}
-          onPress={this.onAddPressed.bind(this)}
+          onPress={this.onAddPressed}
           >
           <Text
             style={styles.buttonText}
