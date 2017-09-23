@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
     flex: 1,
     flexDirection: 'column',
     marginBottom: 10,
@@ -36,7 +35,6 @@ export default class ProjectRow extends React.Component {
   }
 
   render(){
-
     return (
       <View style={styles.container}>
         <Text style={styles.label}>

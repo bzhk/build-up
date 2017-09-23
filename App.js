@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, AsyncStorage } from 'react-native';
 import { Constants } from 'expo';
 import { StackNavigator } from 'react-navigation';
 import  MainScreen  from './comps/MainScreen';
 import ProjectDetails from './comps/ProjectDetails';
 import ProceduresDetails from './comps/DetailsComps/Rows/ProceduresDetails';
+import AddNewTask from './comps/DetailsComps/add/addNewTask';
 
 const styles = StyleSheet.create({
     container: {
@@ -20,9 +21,11 @@ const Navigation = StackNavigator({
   Home: { screen: MainScreen },
   Details: { screen: ProjectDetails},
   Procedures: { screen: ProceduresDetails},
+  AddNewTask: { screen: AddNewTask},
 });
 
 export default class App extends React.Component {
+
   render() {
     return (
       <View style={styles.container}>

@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
   button:{
     backgroundColor: '#4A619D',
-    margin: 20,
+    margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
@@ -39,9 +39,9 @@ export default class ProjectsList extends React.Component {
           dataSource={this.state.dataSource}
           renderRow={(rowData) =>
               <ProjectRow
+                projectsData={this.props.projects}
                 project={rowData}
                 projectDetails={() => navigate('Details', {rowData})}
-
               />
             }
         />

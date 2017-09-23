@@ -37,6 +37,10 @@ const ProjectDetailsScreen = TabNavigator({
 );
 
 export default class ProjectDetails extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log(props);
+  }
   static navigationOptions = {
     title: 'Project Details',
   };

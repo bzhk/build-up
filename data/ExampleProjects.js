@@ -1,6 +1,7 @@
 export const Projects =  [
   {
     info:{
+      id:1,
       name: 'BuildUP1',
       place: 'Warszawa',
       startDate: '',
@@ -17,10 +18,14 @@ export const Projects =  [
           },
           {
             name:'Wykop wykonany na szerokość od 50 cm do 100 cm',
-            done: false,
+            done: true,
           },
           {
             name:'Brak wód gruntowych',
+            done: false,
+          },
+          {
+            name:'Wykop wykonany na głębokość minimum 1m',
             done: false,
           },
         ],
@@ -35,6 +40,7 @@ export const Projects =  [
   },
   {
     info:{
+      id:2,
       name: 'BuildUP2',
       place: 'Poznan',
       startDate: '',
