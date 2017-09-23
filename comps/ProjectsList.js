@@ -51,6 +51,7 @@ export default class ProjectsList extends React.Component {
                   rowData,
                   removeProject: this.props.removeProject,
                   addProcedure: this.props.addProcedure,
+                  editInfoProject: this.props.editInfoProject,
                 })
                 }
               />

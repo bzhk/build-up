@@ -39,7 +39,7 @@ export default class ProcInfo extends React.Component {
 
   componentWillReceiveProps(nextProps) {
       console.log('działa')
-      const dataSource = this.state.dataSource.cloneWithRows(nextProps.screenProps.state.params.rowData);
+      const dataSource = this.state.dataSource.cloneWithRows(nextProps.state.params.rowData);
       this.setState({dataSource});
   }
 

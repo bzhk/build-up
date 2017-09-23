@@ -8,6 +8,7 @@ import ProceduresDetails from './comps/DetailsComps/Rows/ProceduresDetails';
 import AddNewTask from './comps/DetailsComps/add/addNewTask';
 import AddNewProject from './comps/DetailsComps/add/AddNewProject';
 import ProceduresList from './comps/DetailsComps/add/ProceduresList';
+import EditProjectInfo from './comps/DetailsComps/add/EditProjectInfo';
 
 
 const styles = StyleSheet.create({
@@ -27,6 +28,7 @@ const Navigation = StackNavigator({
   AddNewTask: { screen: AddNewTask},
   AddNewProject: { screen: AddNewProject},
   ProceduresList: { screen: ProceduresList},
+  EditProjectInfo: { screen: EditProjectInfo},
 });
 
 export default class App extends React.Component {

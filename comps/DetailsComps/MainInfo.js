@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
+  editButton:{
+    backgroundColor: '#3498db',
+  },
   buttonText:{
     color: '#fafafa',
     fontSize: 20,
@@ -40,12 +43,16 @@ export default class MainInfo extends React.Component {
     alert('Project was removed!');
   }
 
+
+
   static navigationOptions = {
     title: 'Main Info',
   };
 
   render() {
     const info = this.props.screenProps.state.params.rowData.info;
+    const {navigate} = this.props.screenProps;
+    console.log(this.props)
     return (
       <View style={styles.container}>
         <Text>
@@ -53,6 +60,19 @@ export default class MainInfo extends React.Component {
           {info.place + "\n"}
           {info.startDate + " - " + info.endDate }
         </Text>
+        <TouchableOpacity
+          style={[styles.button, styles.editButton]}
+          onPress={() => navigate('EditProjectInfo',
+          {
+            editInfoProject:this.props.screenProps.state.params.editInfoProject,
+            info: info,
+          }
+          )}
+          >
+          <Text style={styles.buttonText}>
+            Edit Project's info
+          </Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={this.removeProjectPerm.bind(this)}

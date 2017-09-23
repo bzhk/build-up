@@ -35,6 +35,21 @@ export default class MainScreen extends React.Component {
     AsyncStorage.setItem("BuildUP", JSON.stringify(this.state.BuildUP));
   }
 
+  editInfoProject(info, index) {
+    console.log(info)
+    console.log(index)
+    this.state.BuildUP.find((elem) => {
+      if(elem.info.id == index){
+        elem.info.name = info.name;
+        elem.info.place = info.place;
+        elem.info.startDate = info.startDate;
+        elem.info.endDate = info.endDate;
+        return;
+      }
+    })
+    this.saveAsyncData();
+  }
+
   addNewProject(project) {
     this.state.BuildUP.push( {info:project,procedures:[],issues:[]} )
     this.saveAsyncData();
@@ -74,10 +89,11 @@ export default class MainScreen extends React.Component {
               addNewProject={() => navigate( 'AddNewProject' ,
               {
                 addNewProject: this.addNewProject.bind(this),
-                id: this.state.BuildUP[this.state.BuildUP.length-1].info.id+1,
+                id: this.state.BuildUP.length>0?this.state.BuildUP[this.state.BuildUP.length-1].info.id+1:1,
               }
               )}
               addProcedure={this.addProcedure.bind(this)}
+              editInfoProject={this.editInfoProject.bind(this)}
               />
           </View>
       );
