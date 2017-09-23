@@ -33,7 +33,10 @@ export default class MainInfo extends React.Component {
 
   removeProjectPerm() {
     this.props.screenProps.state.params.removeProject(this.props.screenProps.state.params.rowData);
-    
+    const backAction = NavigationActions.back({
+      key: null
+    });
+    this.props.screenProps.dispatch(backAction);
     alert('Project was removed!');
   }
 

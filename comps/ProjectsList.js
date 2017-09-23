@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
   },
 });
 
+
 export default class ProjectsList extends React.Component {
   constructor(props) {
     super(props);
@@ -38,11 +39,9 @@ export default class ProjectsList extends React.Component {
 
   render() {
     const {navigate} = this.props.navigation;
-
     return (
       <View style={styles.container}>
         <ListView
-          key={this.state.projects}
           dataSource={this.state.dataSource}
           renderRow={(rowData) =>
               <ProjectRow
@@ -50,7 +49,9 @@ export default class ProjectsList extends React.Component {
                 project={rowData}
                 projectDetails={() => navigate('Details', {
                   rowData,
-                  removeProject: this.props.removeProject})
+                  removeProject: this.props.removeProject,
+                  addProcedure: this.props.addProcedure,
+                })
                 }
               />
             }

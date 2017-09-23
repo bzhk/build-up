@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import {Projects} from '../data/ExampleProjects';
+import {Procedures} from '../data/Procedures';
 import ProjectsList from './ProjectsList';
 
 
@@ -26,24 +27,35 @@ export default class MainScreen extends React.Component {
     }).done();
   }
 
-  addNewProject(project) {
-    this.state.BuildUP.push( {info:project,procedures:[],issues:[]} )
+
+  saveAsyncData() {
     this.setState(
       { BuildUP: this.state.BuildUP }
     );
     AsyncStorage.setItem("BuildUP", JSON.stringify(this.state.BuildUP));
   }
 
-  removeProject(project){
+  addNewProject(project) {
+    this.state.BuildUP.push( {info:project,procedures:[],issues:[]} )
+    this.saveAsyncData();
+  }
+
+  removeProject(project) {
     this.state.BuildUP.find((elem, index) => {
       if(elem.info.id == project.info.id){
         return this.state.BuildUP.splice(index,1)
       }
     })
-    this.setState(
-      { BuildUP: this.state.BuildUP }
-    );
-    AsyncStorage.setItem("BuildUP", JSON.stringify(this.state.BuildUP));
+    this.saveAsyncData();
+  }
+
+  addProcedure(index, procedure) {
+    this.state.BuildUP.find((elem) => {
+      if(elem.info.id == index){
+        elem.procedures.push(procedure)
+      }
+    })
+    this.saveAsyncData();
   }
 
   static navigationOptions = {
@@ -65,6 +77,7 @@ export default class MainScreen extends React.Component {
                 id: this.state.BuildUP[this.state.BuildUP.length-1].info.id+1,
               }
               )}
+              addProcedure={this.addProcedure.bind(this)}
               />
           </View>
       );

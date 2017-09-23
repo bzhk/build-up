@@ -25,6 +25,8 @@ const ProjectDetailsScreen = TabNavigator({
   }, {
     tabBarPosition: 'top',
     animationEnabled: true,
+    backBehavior: 'initialRoute',
+    lazy: true,
     tabBarOptions: {
     labelStyle: {
       fontSize: 15,
@@ -40,15 +42,17 @@ export default class ProjectDetails extends React.Component {
   constructor(props) {
     super(props);
   }
-  
+
   static navigationOptions = {
     title: 'Project Details',
   };
 
   render() {
-
+    console.log(this.props)
     return (
-        <ProjectDetailsScreen screenProps={this.props.navigation}/>
+        <ProjectDetailsScreen
+          screenProps={this.props.navigation}
+        />
     );
   }
 }
