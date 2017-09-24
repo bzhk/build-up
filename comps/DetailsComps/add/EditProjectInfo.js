@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
 export default class EditProjectInfo extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.state = {
       name: this.props.navigation.state.params.info.name,
       place: this.props.navigation.state.params.info.place,
@@ -47,7 +46,7 @@ export default class EditProjectInfo extends React.Component {
     const id = this.props.navigation.state.params.info.id;
     this.props.navigation.state.params.editInfoProject(this.state, id);
     const backAction = NavigationActions.back({
-      key: null
+      key: null,
     });
     this.props.navigation.dispatch(backAction);
     alert('Project was edited!');

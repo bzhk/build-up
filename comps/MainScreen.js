@@ -35,21 +35,6 @@ export default class MainScreen extends React.Component {
     AsyncStorage.setItem("BuildUP", JSON.stringify(this.state.BuildUP));
   }
 
-  editInfoProject(info, index) {
-    console.log(info)
-    console.log(index)
-    this.state.BuildUP.find((elem) => {
-      if(elem.info.id == index){
-        elem.info.name = info.name;
-        elem.info.place = info.place;
-        elem.info.startDate = info.startDate;
-        elem.info.endDate = info.endDate;
-        return;
-      }
-    })
-    this.saveAsyncData();
-  }
-
   addNewProject(project) {
     this.state.BuildUP.push( {info:project,procedures:[],issues:[]} )
     this.saveAsyncData();
@@ -64,12 +49,41 @@ export default class MainScreen extends React.Component {
     this.saveAsyncData();
   }
 
-  addProcedure(index, procedure) {
-    this.state.BuildUP.find((elem) => {
-      if(elem.info.id == index){
-        elem.procedures.push(procedure)
+  removeProcedure(procId, project) {
+    this.state.BuildUP.find((elem, index) => {
+      if(elem.info.id == project.info.id){
+        elem.procedures.find((proces, procIndex) => {
+          if(proces.newId == procId){
+            return this.state.BuildUP[index].procedures.splice(procIndex,1)
+          }
+        })
       }
     })
+    this.saveAsyncData();
+  }
+
+  editInfoProject(info, index) {
+    this.state.BuildUP.find((elem) => {
+      if(elem.info.id == index){
+        elem.info.name = info.name;
+        elem.info.place = info.place;
+        elem.info.startDate = info.startDate;
+        elem.info.endDate = info.endDate;
+        return;
+      }
+    })
+    this.saveAsyncData();
+  }
+
+  addProcedure(index, procedure , addId) {
+
+    const newId = { newId: addId};
+    this.state.BuildUP.find((elem) => {
+      if(elem.info.id == index){
+        Object.assign(procedure, newId)
+        return elem.procedures.push(procedure)
+      }
+    }),
     this.saveAsyncData();
   }
 
@@ -86,6 +100,7 @@ export default class MainScreen extends React.Component {
               navigation={this.props.navigation}
               projects={this.state.BuildUP}
               removeProject={this.removeProject.bind(this)}
+              removeProcedure={this.removeProcedure.bind(this)}
               addNewProject={() => navigate( 'AddNewProject' ,
               {
                 addNewProject: this.addNewProject.bind(this),

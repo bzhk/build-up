@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
 export default class MainInfo extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props)
   }
 
   removeProjectPerm() {
@@ -43,8 +44,6 @@ export default class MainInfo extends React.Component {
     alert('Project was removed!');
   }
 
-
-
   static navigationOptions = {
     title: 'Main Info',
   };
@@ -52,7 +51,7 @@ export default class MainInfo extends React.Component {
   render() {
     const info = this.props.screenProps.state.params.rowData.info;
     const {navigate} = this.props.screenProps;
-    console.log(this.props)
+
     return (
       <View style={styles.container}>
         <Text>

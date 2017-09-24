@@ -30,22 +30,19 @@ const styles = StyleSheet.create({
 export default class ProcInfo extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props.screenProps.state.params)
+    console.log(props.screenProps.state.params.rowData.procedures.length)
+    console.log(props.screenProps.state.params.rowData.procedures.length+1)
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows(props.screenProps.state.params.rowData.procedures),
     };
   }
 
+
   componentWillReceiveProps(nextProps) {
-      console.log('działa')
-      const dataSource = this.state.dataSource.cloneWithRows(nextProps.state.params.rowData);
+      const dataSource = this.state.dataSource.cloneWithRows(nextProps.state.params.rowData.procedures);
       this.setState({dataSource});
   }
-
-  static navigationOptions = {
-    title: 'Procedures Info',
-  };
 
   componentDidMount(){
     AsyncStorage.getItem("Procedures").then((value) => {
@@ -56,9 +53,9 @@ export default class ProcInfo extends React.Component {
     }).done();
   }
 
-  addProcedure() {
-    this.props.screenProps.state.params.addProcedure
-  }
+  static navigationOptions = {
+    title: 'Procedures Info',
+  };
 
   render() {
     const {navigate} = this.props.screenProps;
@@ -72,6 +69,8 @@ export default class ProcInfo extends React.Component {
                 <ProcRow
                   procRow={rowData}
                   showTasks={() => navigate('Procedures', {rowData})}
+                  removeProcedure={this.props.screenProps.state.params.removeProcedure}
+                  targetProject={this.props.screenProps.state.params.rowData}
                 />
                 }
             />

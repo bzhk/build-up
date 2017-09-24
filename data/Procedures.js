@@ -1,6 +1,6 @@
 export const Procedures =  [
   {
-    id:1,
+    idProc:1,
     name:'Procedura budowy fundamentów',
     done: true,
     tasks:[
@@ -23,7 +23,7 @@ export const Procedures =  [
     ],
   },
   {
-    id:2,
+    idProc:2,
     name:'Procedura budowy dachu',
     done: false,
     tasks:[

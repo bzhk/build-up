@@ -41,6 +41,13 @@ const styles = StyleSheet.create({
 });
 
 export default class ProcRow extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  removeProcedurePerm() {
+    this.props.removeProcedure(this.props.procRow.newId, this.props.targetProject);
+    alert('Procedure was removed!');
+  }
 
   render(){
     return (
@@ -60,7 +67,10 @@ export default class ProcRow extends React.Component {
               Tasks
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btnRemove}>
+          <TouchableOpacity
+            style={styles.btnRemove}
+            onPress={this.removeProcedurePerm.bind(this)}
+            >
             <Text style={styles.txtProcs}>
               Remove
             </Text>
