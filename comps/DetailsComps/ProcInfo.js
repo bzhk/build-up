@@ -58,7 +58,6 @@ export default class ProcInfo extends React.Component {
       return (
         <View style={styles.container}>
             <ListView
-              key={this.props.screenProps.state.params.rowData.procedures}
               dataSource={this.state.dataSource}
               renderRow={(rowData) =>
                 <ProcRow

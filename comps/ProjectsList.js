@@ -55,7 +55,6 @@ export default class ProjectsList extends React.Component {
   onChangeFiltr(text){
     const reg = new RegExp(text,"ig");
     const filter = this.props.projects.filter((elem) => {
-      console.log(elem)
        if(reg.test(elem.info.name)){
          return elem
        }

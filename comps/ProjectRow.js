@@ -38,8 +38,8 @@ export default class ProjectRow extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.label}>
-            {this.props.project.info.name + " " + this.props.project.info.place}
-            {this.props.project.info.startDate + " / " + this.props.project.info.endDate}
+            {"Name: "+this.props.project.info.name + "\nPlace: " + this.props.project.info.place + "\n"}
+            {"Date: " + this.props.project.info.startDate + " / " + this.props.project.info.endDate}
           </Text>
           <TouchableOpacity
             style={styles.btnDetails}
