@@ -85,6 +85,7 @@ export default class ProceduresRow extends React.Component {
 
     this.props.removeTask(procedureId, projectId, taskId);
     this.props.forceRender();
+    this.props.forceRenderMainList();
     alert('Task was removed!!');
   }
 

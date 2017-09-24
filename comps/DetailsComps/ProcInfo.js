@@ -60,6 +60,7 @@ export default class ProcInfo extends React.Component {
     const removeTask = this.props.screenProps.state.params.removeTask;
     const doneTask = this.props.screenProps.state.params.doneTask;
     const editTask = this.props.screenProps.state.params.editTask;
+    const addNewTask = this.props.screenProps.state.params.addNewTask;
     if(this.state.Procedures) {
       return (
         <View style={styles.container}>
@@ -75,6 +76,7 @@ export default class ProcInfo extends React.Component {
                       removeTask,
                       doneTask,
                       editTask,
+                      addNewTask,
                       forceRenderMainList: this.forceRender.bind(this),
                     })}
                   forceRender={this.forceRender.bind(this)}

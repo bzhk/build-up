@@ -100,7 +100,7 @@ export default class MainScreen extends React.Component {
     this.state.BuildUP.find((elem, index) => {
       if(elem.info.id == projectId){
         elem.procedures.find((proceElem, proceIndex) => {
-          if(proceElem.newId == projectId){
+          if(proceElem.newId == procedureId){
             proceElem.tasks.find((taskElem, taskIndex) => {
               if(taskElem.idTask == taskId){
                 return taskElem.name = newName;
@@ -122,6 +122,24 @@ export default class MainScreen extends React.Component {
         return elem.procedures.push(procedure);
       }
     });
+    this.saveAsyncData();
+  }
+
+  addNewTask(name, projectId, procedureId, idTask) {
+    this.state.BuildUP.find((elem) => {
+      if(elem.info.id = projectId){
+        elem.procedures.find((procedureElem) => {
+          if(procedureElem.newId == procedureId){
+            const newTask = {
+              name: name,
+              done: false,
+              idTask: idTask,
+            }
+            procedureElem.tasks.push(newTask)
+          }
+        })
+      }
+    })
     this.saveAsyncData();
   }
 
@@ -156,6 +174,7 @@ export default class MainScreen extends React.Component {
               doneTask={this.doneTask.bind(this)}
               editTask={this.editTask.bind(this)}
               editInfoProject={this.editInfoProject.bind(this)}
+              addNewTask={this.addNewTask.bind(this)}
               addProcedure={this.addProcedure.bind(this)}
               addNewProject={() => navigate( 'AddNewProject' ,
                 {

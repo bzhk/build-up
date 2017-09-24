@@ -36,6 +36,24 @@ export default class AddNewTask extends React.Component {
     this.state = {text: ''};
   }
 
+  onAddPressed() {
+    const taskArr = this.props.navigation.state.params.procedure.tasks.sort((a,b) => {
+      return a.idTask - b.idTask;
+    });
+    const idTask = taskArr.length>0?taskArr[taskArr.length-1].idTask+1 : 1;
+    const projectId = this.props.navigation.state.params.procedure.projectId;
+    const procedId = this.props.navigation.state.params.procedure.newId;
+    const name = this.state.text;
+    this.props.navigation.state.params.addNewTask(name, projectId, procedId, idTask);
+    this.props.navigation.state.params.forceRender();
+    this.props.navigation.state.params.forceRenderMainList();
+    const backAction = NavigationActions.back({
+      key: null
+    });
+    this.props.navigation.dispatch(backAction);
+    alert('Task was added!');
+  }
+
   static navigationOptions = {
     title: 'Add New Task',
   };
@@ -52,7 +70,7 @@ export default class AddNewTask extends React.Component {
         />
         <TouchableOpacity
           style={styles.addButton}
-          onPress={this.onAddPressed}
+          onPress={this.onAddPressed.bind(this)}
           >
           <Text
             style={styles.buttonText}
