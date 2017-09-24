@@ -49,6 +49,7 @@ export default class LibraryList extends React.Component {
     const {navigate} = this.props.navigation;
     const ProceduresList  = this.props.navigation.state.params.procedures;
     const removeProcedureLib = this.props.navigation.state.params.removeProcedureLib;
+    const addProcedureLib = this.props.navigation.state.params.addProcedureLib;
 
       return (
         <View style={styles.container}>
@@ -61,10 +62,9 @@ export default class LibraryList extends React.Component {
                   showTasks={() => navigate('ProcLibRow',
                     {
                       rowData,
-                      removeProcedureLib,
                       editTask,
                       addNewTask,
-                      forceRenderMainList: this.forceRender.bind(this),
+                      forceRender: this.forceRender.bind(this),
                     })}
                   forceRender={this.forceRender.bind(this)}
                 />
@@ -72,6 +72,12 @@ export default class LibraryList extends React.Component {
             />
             <TouchableOpacity
               style={styles.button}
+              onPress={() => navigate('AddProcedureLib',
+              {
+                addProcedureLib: this.props.navigation.state.params.addProcedureLib,
+                forceRender: this.forceRender.bind(this),
+                proceduresList: this.props.navigation.state.params.procedures,
+              })}
               >
               <Text style={styles.buttonText}>
                 Add new procedure

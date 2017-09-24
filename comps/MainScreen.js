@@ -63,11 +63,12 @@ export default class MainScreen extends React.Component {
         this.state.Procedures.splice(index, 1);
       }
     });
-    // this.saveAsyncData('Procedures');
+    this.saveAsyncData('Procedures');
   }
 
-  addProcedureLib( procedureId ) {
-    console.log( procedureId )
+  addProcedureLib( newProcedure ) {
+    this.state.Procedures.push(newProcedure)
+    this.saveAsyncData('Procedures');
   }
 
   removeProcedure(procId, project) {
@@ -207,6 +208,7 @@ export default class MainScreen extends React.Component {
               {
                 procedures: this.state.Procedures,
                 removeProcedureLib: this.removeProcedureLib.bind(this),
+                addProcedureLib: this.addProcedureLib.bind(this),
               })}
               />
           </View>

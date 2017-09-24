@@ -29,6 +29,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
   },
+  btnEdit: {
+    backgroundColor: '#3498db',
+  },
   btnRemove: {
     backgroundColor: '#e74c3c',
     flex: 2,
@@ -66,6 +69,14 @@ export default class ProcLibRow extends React.Component {
             >
             <Text style={styles.txtProcs}>
               Tasks
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btnProcs, styles.btnEdit]}
+            onPress={this.props.showTasks}
+            >
+            <Text style={styles.txtProcs}>
+              Edit
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
