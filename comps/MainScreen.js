@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, AsyncStorage, Alert } from 'react-native';
 import {Projects} from '../data/ExampleProjects';
-import {Procedures} from '../data/Procedures';
+import {Proceduress} from '../data/Procedures';
 import ProjectsList from './ProjectsList';
 
 
@@ -16,6 +16,7 @@ export default class MainScreen extends React.Component {
     super(props);
     this.state = {
     }
+
   }
 
   componentDidMount(){
@@ -115,7 +116,7 @@ export default class MainScreen extends React.Component {
     };
     this.state.Procedures.find((elem) => {
       if(elem.idProc == procedId){
-        return elem.tasks.push(newTask);
+        elem.tasks.push(newTask);
       }
     });
     this.saveAsyncData('Procedures');
@@ -135,36 +136,31 @@ export default class MainScreen extends React.Component {
   }
 
   removeTask(procedureId, projectId, taskId) {
-    this.state.BuildUP.find((elem, index) => {
+    this.state.BuildUP.find((elem) => {
       if(elem.info.id == projectId){
-        elem.procedures.find((proceElem, proceIndex) => {
-          if(proceElem.newId == projectId){
+        elem.procedures.find((proceElem) => {
+          if(proceElem.newId && proceElem.newId == procedureId){
             proceElem.tasks.find((taskElem, taskIndex) => {
               if(taskElem.idTask == taskId){
-                return proceElem.tasks.splice(taskIndex, 1);
+                 return proceElem.tasks.splice(taskIndex, 1)
               }
-            })
+            });
           }
-        })
+        });
       }
-    })
+    });
+    console.log(this.state.Procedures);
     this.saveAsyncData('BuildUP');
   }
 
   doneTask(procedureId, projectId, taskId) {
     this.state.BuildUP.find((elem, index) => {
-      console.log(elem)
       if(elem.info.id == projectId){
-        console.log(elem);
         elem.procedures.find((proceElem, proceIndex) => {
-
           if(proceElem.newId == procedureId){
-            console.log(proceElem);
             proceElem.tasks.find((taskElem, taskIndex) => {
-
               if(taskElem.idTask == taskId){
-                console.log(taskElem);
-                return taskElem.done?taskElem.done=false:taskElem.done=true;
+                taskElem.done?taskElem.done=false:taskElem.done=true;
               }
             })
           }
@@ -192,12 +188,14 @@ export default class MainScreen extends React.Component {
   }
 
   addProcedure(index, procedure , addId) {
+
     const newId = { newId: addId};
     const projectId = { projectId: index};
     this.state.BuildUP.find((elem) => {
       if(elem.info.id == index){
         Object.assign(procedure, newId, projectId);
-        return elem.procedures.push(procedure);
+        console.log(procedure)
+        elem.procedures.push(procedure);
       }
     });
     this.saveAsyncData('BuildUP');
@@ -228,7 +226,6 @@ export default class MainScreen extends React.Component {
         elem.info.place = info.place;
         elem.info.startDate = info.startDate;
         elem.info.endDate = info.endDate;
-        return;
       }
     });
     this.saveAsyncData('BuildUP');
@@ -240,7 +237,7 @@ export default class MainScreen extends React.Component {
 
   render() {
     const {navigate} = this.props.navigation;
-    if(this.state.BuildUP){
+    if(this.state.BuildUP ){
       return (
         <View style={styles.container}>
             <ProjectsList

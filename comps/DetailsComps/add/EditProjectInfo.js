@@ -45,6 +45,7 @@ export default class EditProjectInfo extends React.Component {
   odEdit(){
     const id = this.props.navigation.state.params.info.id;
     this.props.navigation.state.params.editInfoProject(this.state, id);
+    this.props.navigation.state.params.forceRender();
     const backAction = NavigationActions.back({
       key: null,
     });

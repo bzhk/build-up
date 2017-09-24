@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, ListView, TouchableOpacity, AsyncStorage } from 'react-native';
 import PropTypes from 'prop-types';
 import ProcRow from './Rows/ProcRow';
-import {Procedures} from '../../data/Procedures';
+
 
 const styles = StyleSheet.create({
   container: {
@@ -50,7 +50,6 @@ export default class ProcInfo extends React.Component {
   render() {
     const {navigate} = this.props.screenProps;
     const ProceduresList  = this.props.screenProps.state.params.procedures;
-    console.log(ProceduresList)
     const removeTask = this.props.screenProps.state.params.removeTask;
     const doneTask = this.props.screenProps.state.params.doneTask;
     const editTask = this.props.screenProps.state.params.editTask;

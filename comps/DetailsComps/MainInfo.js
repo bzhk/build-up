@@ -34,6 +34,11 @@ export default class MainInfo extends React.Component {
     super(props);
   }
 
+  forceRender() {
+    const dataSource = this.props;
+    this.setState({dataSource});
+  }
+
   removeProjectPerm() {
     this.props.screenProps.state.params.removeProject(this.props.screenProps.state.params.rowData);
     const backAction = NavigationActions.back({
@@ -75,6 +80,7 @@ export default class MainInfo extends React.Component {
           style={[styles.button, styles.editButton]}
           onPress={() => navigate('EditProjectInfo',
           {
+            forceRender: this.forceRender.bind(this),
             editInfoProject:this.props.screenProps.state.params.editInfoProject,
             info: info,
           }

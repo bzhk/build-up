@@ -1,4 +1,4 @@
-export const Procedures =  [
+export const Proceduress =  [
   {
     idProc:1,
     name:'Procedura budowy fundamentów',

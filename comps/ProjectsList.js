@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ListView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ListView, TouchableOpacity, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
 import ProjectRow from './ProjectRow';
 
@@ -27,6 +27,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
   },
+  input: {
+    height: 50,
+    marginLeft: 10,
+    marginRight: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    fontSize: 20,
+  },
 });
 
 
@@ -44,10 +52,28 @@ export default class ProjectsList extends React.Component {
       this.setState({dataSource});
   }
 
+  onChangeFiltr(text){
+    const reg = new RegExp(text,"ig");
+    const filter = this.props.projects.filter((elem) => {
+      console.log(elem)
+       if(reg.test(elem.info.name)){
+         return elem
+       }
+    });
+    const dataSource = this.state.dataSource.cloneWithRows(filter);
+    this.setState({dataSource});
+
+  }
+
   render() {
     const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
+        <TextInput
+          onChangeText={(text) => this.onChangeFiltr(text)}
+          style={styles.input}
+          placeholder={'Search'}
+        />
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(rowData) =>
