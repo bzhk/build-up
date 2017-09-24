@@ -64,7 +64,7 @@ export default class IssueRow extends React.Component {
   }
 
   render(){
-    console.log(this.props.issueRow.solved);
+
     return (
       <View style={styles.container}>
         <Text style={[styles.label, this.props.issueRow.solved && styles.textBC]}>

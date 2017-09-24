@@ -79,7 +79,6 @@ export default class ProceduresRow extends React.Component {
   }
 
   removeTaskPressed() {
-    console.log(this.props)
     const procedureId = this.props.procedure.newId;
     const projectId = this.props.procedure.projectId;
     const taskId = this.props.task.idTask;

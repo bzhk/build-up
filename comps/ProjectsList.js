@@ -71,7 +71,7 @@ export default class ProjectsList extends React.Component {
         <TextInput
           onChangeText={(text) => this.onChangeFiltr(text)}
           style={styles.input}
-          placeholder={'Search'}
+          placeholder={'Search for name'}
         />
         <ListView
           dataSource={this.state.dataSource}
@@ -92,6 +92,7 @@ export default class ProjectsList extends React.Component {
                   editInfoProject: this.props.editInfoProject,
                   addNewTask: this.props.addNewTask,
                   addProcedure: this.props.addProcedure,
+                  addNewIssue: this.props.addNewIssue,
 
                 })
                 }

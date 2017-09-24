@@ -242,20 +242,29 @@ export default class MainScreen extends React.Component {
         })
       }
     })
-    // this.saveAsyncData('BuildUP');
+    this.saveAsyncData('BuildUP');
   }
 
   doneIssue(projectId, issueId) {
     this.state.BuildUP.find((elem) => {
       if(elem.info.id == projectId){
         elem.issues.find((taskElem, taskIndex) => {
-          if(taskElem.idIssue = issueId){
+          if(taskElem.idIssue == issueId){
             return taskElem.solved?taskElem.solved=false:taskElem.solved=true;
           }
         })
       }
     })
     this.saveAsyncData('BuildUP');
+  }
+
+  addNewIssue(projectId, issue){
+    this.state.BuildUP.find((elem) => {
+      if(elem.info.id == projectId){
+        console.log(issue);
+        elem.issues.push(issue)
+      }
+    });
   }
 
   static navigationOptions = {
@@ -281,6 +290,7 @@ export default class MainScreen extends React.Component {
               procedures= {this.state.Procedures}
               removeIssue={this.removeIssue.bind(this)}
               doneIssue={this.doneIssue.bind(this)}
+              addNewIssue={this.addNewIssue.bind(this)}
               addNewProject={() => navigate( 'AddNewProject' ,
                 {
                   addNewProject: this.addNewProject.bind(this),

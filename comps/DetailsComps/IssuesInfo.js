@@ -43,10 +43,12 @@ export default class IssuesInfo extends React.Component {
     title: 'Issues Info',
   };
   render() {
+    const {navigate} = this.props.screenProps;
     return (
       <View style={styles.container}>
           <ListView
             dataSource={this.state.dataSource}
+            enableEmptySections={true}
             renderRow={(rowData) =>
               <IssueRow
                 issueRow={rowData}
@@ -63,6 +65,13 @@ export default class IssuesInfo extends React.Component {
           />
           <TouchableOpacity
             style={styles.button}
+            onPress={() => navigate('AddNewIssue',
+              {
+                addNewIssue: this.props.screenProps.state.params.addNewIssue,
+                projectInfo: this.props.screenProps.state.params.rowData,
+                forceRender: this.forceRender.bind(this),
+              }
+            )}
             >
             <Text style={styles.buttonText}>
               Add Issue
