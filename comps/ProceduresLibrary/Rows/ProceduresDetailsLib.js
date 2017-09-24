@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, ListView } from 'react-native';
 import PropTypes from 'prop-types';
-import ProceduresRow from './ProceduresRowLib';
+import ProceduresRowLib from './ProceduresRowLib';
 
 const styles = StyleSheet.create({
   listView:{
@@ -56,13 +56,12 @@ export default class ProceduresDetails extends React.Component {
           style={styles.listView}
           dataSource={this.state.dataSource}
           renderRow={(rowData) =>
-            <ProceduresRow
+            <ProceduresRowLib
               task={rowData}
               forceRender={this.forceRender.bind(this)}
               procedure={this.props.navigation.state.params.rowData}
-              editTask={this.props.navigation.state.params.editTask}
+              editTaskLib={this.props.navigation.state.params.editTaskLib}
               removeTask={this.props.navigation.state.params.removeTask}
-              doneTask={this.props.navigation.state.params.doneTask}
               navigation={this.props.navigation}
               forceRenderMainList={this.props.navigation.state.params.forceRenderMainList}
             />
@@ -83,6 +82,6 @@ export default class ProceduresDetails extends React.Component {
           </Text>
         </TouchableOpacity>
       </View>
-    );
+    )
   }
 }

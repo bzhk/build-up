@@ -72,11 +72,22 @@ export default class MainScreen extends React.Component {
   }
 
   editProcedureLib( newName, id ) {
-    console.log(newName)
     this.state.Procedures.find((elem) => {
       if(elem.idProc == id){
-        console.log(elem)
         return elem.name = newName;
+      }
+    });
+    this.saveAsyncData('Procedures');
+  }
+
+  editTaskLib(procedureId, taskId, newName) {
+    this.state.Procedures.find((elem) => {
+      if(elem.idProc == procedureId){
+        elem.tasks.find((taskElem) => {
+          if(taskElem.idTask == taskId){
+            taskElem.name = newName
+          }
+        });
       }
     });
     this.saveAsyncData('Procedures');
@@ -221,6 +232,7 @@ export default class MainScreen extends React.Component {
                 removeProcedureLib: this.removeProcedureLib.bind(this),
                 addProcedureLib: this.addProcedureLib.bind(this),
                 editProcedureLib: this.editProcedureLib.bind(this),
+                editTaskLib: this.editTaskLib.bind(this),
               })}
               />
           </View>

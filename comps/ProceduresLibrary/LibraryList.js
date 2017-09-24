@@ -65,9 +65,10 @@ export default class LibraryList extends React.Component {
                     forceRender: this.forceRender.bind(this),
                     rowData,
                   })}
-                  showTasks={() => navigate('ProcLibRow',
+                  showTasks={() => navigate('ProceduresDetailsLib',
                     {
-                      
+                      rowData,
+                      editTaskLib: this.props.navigation.state.params.editTaskLib,
                       forceRender: this.forceRender.bind(this),
                     })}
                   forceRender={this.forceRender.bind(this)}

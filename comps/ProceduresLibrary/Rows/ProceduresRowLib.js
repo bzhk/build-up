@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     padding: 10,
-    backgroundColor: '#e74c3c',
+    backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#F7F7F7',
   },
@@ -67,16 +67,7 @@ export default class ProceduresRowLib extends React.Component {
     super(props);
   }
 
-  doneTaskPressed() {
-    const procedureId = this.props.procedure.newId;
-    const projectId = this.props.procedure.projectId;
-    const taskId = this.props.task.idTask;
 
-    this.props.doneTask(procedureId, projectId, taskId);
-    this.props.forceRender();
-    this.props.forceRenderMainList();
-
-  }
 
   removeTaskPressed() {
     const procedureId = this.props.procedure.newId;
@@ -94,29 +85,20 @@ export default class ProceduresRowLib extends React.Component {
     const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
-        <View  style={[styles.headerContainer, this.props.task.done && styles.doneContainer]}>
+        <View  style={styles.headerContainer}>
           <Text style={styles.text}>
             {this.props.task.name}
           </Text>
         </View>
         <View style={styles.flexRow}>
           <TouchableOpacity
-            style={[styles.listButton, this.props.task.done && styles.btnDone]}
-            onPress={this.doneTaskPressed.bind(this)}
-            >
-            <Text style={styles.listButtonText}>
-              {this.props.task.done?'Done':'Not Done'}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
             style={[styles.listButton, styles.btnEdit]}
-            onPress={() => navigate('EditTask',
+            onPress={() => navigate('EditTaskLib',
             {
               editInfoTask:this.props.task.name,
-              procedureId: this.props.procedure.newId,
-              projectId: this.props.procedure.projectId,
+              procedureId: this.props.procedure.idProc,
               taskId: this.props.task.idTask,
-              editTask: this.props.editTask,
+              editTaskLib: this.props.editTaskLib,
               forceRender: this.props.forceRender,
             })}
             >
