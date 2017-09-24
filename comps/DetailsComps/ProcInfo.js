@@ -38,7 +38,7 @@ export default class ProcInfo extends React.Component {
   }
 
   forceRender() {
-    const dataSource =  new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(this.props.screenProps.state.params.rowData.procedures);
+    const dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(this.props.screenProps.state.params.rowData.procedures);
     this.setState({dataSource});
   }
 
@@ -58,6 +58,9 @@ export default class ProcInfo extends React.Component {
   render() {
     const {navigate} = this.props.screenProps;
     const ProceduresList  = this.state.Procedures;
+    const removeTask = this.props.screenProps.state.params.removeTask;
+    const doneTask = this.props.screenProps.state.params.doneTask;
+    const editTask = this.props.screenProps.state.params.editTask;
     if(this.state.Procedures) {
       return (
         <View style={styles.container}>
@@ -67,10 +70,10 @@ export default class ProcInfo extends React.Component {
               renderRow={(rowData) =>
                 <ProcRow
                   procRow={rowData}
-                  showTasks={() => navigate('Procedures', {rowData})}
+                  showTasks={() => navigate('Procedures', {rowData,removeTask,doneTask,editTask})}
                   forceRender={this.forceRender.bind(this)}
-                  removeProcedure={this.props.screenProps.state.params.removeProcedure}
                   targetProject={this.props.screenProps.state.params.rowData}
+                  removeProcedure={this.props.screenProps.state.params.removeProcedure}
                 />
                 }
             />

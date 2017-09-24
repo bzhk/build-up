@@ -43,22 +43,29 @@ const styles = StyleSheet.create({
 export default class ProcRow extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
   }
+
   removeProcedurePerm() {
-    console.log(this.props.procRow)
     this.props.removeProcedure(this.props.procRow.newId, this.props.targetProject);
     this.props.forceRender();
     alert('Procedure was removed!');
   }
 
   render(){
+    const allTasks = this.props.procRow.tasks.length;
+    const doneTasks = this.props.procRow.tasks.filter((elem) => {
+      return elem.done
+    })
+    
+    console.log(doneTasks)
     return (
       <View style={styles.container}>
         <Text style={styles.label}>
             {this.props.procRow.name}
         </Text>
         <Text style={styles.label}>
-          Done: 2/3
+          Done: {doneTasks.length} / {allTasks} tasks
         </Text>
         <View style={styles.flexRow}>
           <TouchableOpacity
