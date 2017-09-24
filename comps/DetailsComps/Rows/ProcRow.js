@@ -44,6 +44,7 @@ export default class ProcRow extends React.Component {
   constructor(props) {
     super(props);
     console.log(props);
+
   }
 
   removeProcedurePerm() {
@@ -56,9 +57,8 @@ export default class ProcRow extends React.Component {
     const allTasks = this.props.procRow.tasks.length;
     const doneTasks = this.props.procRow.tasks.filter((elem) => {
       return elem.done
-    })
-    
-    console.log(doneTasks)
+    });
+
     return (
       <View style={styles.container}>
         <Text style={styles.label}>
@@ -78,7 +78,7 @@ export default class ProcRow extends React.Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.btnRemove}
-            onPress={this.removeProcedurePerm.bind(this)}
+            onPress={this.removeProcedurePerm.bind(this)}          
             >
             <Text style={styles.txtProcs}>
               Remove

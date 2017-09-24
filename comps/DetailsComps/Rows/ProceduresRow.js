@@ -75,6 +75,8 @@ export default class ProceduresRow extends React.Component {
 
     this.props.doneTask(procedureId, projectId, taskId);
     this.props.forceRender();
+    this.props.forceRenderMainList();
+
   }
 
   removeTaskPressed() {

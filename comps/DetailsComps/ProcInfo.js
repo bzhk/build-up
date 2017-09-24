@@ -70,7 +70,14 @@ export default class ProcInfo extends React.Component {
               renderRow={(rowData) =>
                 <ProcRow
                   procRow={rowData}
-                  showTasks={() => navigate('Procedures', {rowData,removeTask,doneTask,editTask})}
+                  showTasks={() => navigate('Procedures',
+                    {
+                      rowData,
+                      removeTask,
+                      doneTask,
+                      editTask,
+                      forceRenderMainList: this.forceRender.bind(this),
+                    })}
                   forceRender={this.forceRender.bind(this)}
                   targetProject={this.props.screenProps.state.params.rowData}
                   removeProcedure={this.props.screenProps.state.params.removeProcedure}
