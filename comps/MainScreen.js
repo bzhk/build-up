@@ -96,14 +96,14 @@ export default class MainScreen extends React.Component {
     this.saveAsyncData();
   }
 
-  editTask(procedureId, projectId, taskId) {
+  editTask(procedureId, projectId, taskId, newName) {
     this.state.BuildUP.find((elem, index) => {
       if(elem.info.id == projectId){
         elem.procedures.find((proceElem, proceIndex) => {
           if(proceElem.newId == projectId){
             proceElem.tasks.find((taskElem, taskIndex) => {
               if(taskElem.idTask == taskId){
-                return console.log('edit')
+                return taskElem.name = newName;
               }
             })
           }

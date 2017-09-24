@@ -63,6 +63,7 @@ export default class ProceduresDetails extends React.Component {
               editTask={this.props.navigation.state.params.editTask}
               removeTask={this.props.navigation.state.params.removeTask}
               doneTask={this.props.navigation.state.params.doneTask}
+              navigation={this.props.navigation}
               forceRenderMainList={this.props.navigation.state.params.forceRenderMainList}
             />
           }

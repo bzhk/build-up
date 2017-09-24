@@ -34,7 +34,6 @@ export default class ProcInfo extends React.Component {
     this.state = {
       dataSource: ds.cloneWithRows(props.screenProps.state.params.rowData.procedures),
     };
-    console.log(this.state.dataSource);
   }
 
   forceRender() {

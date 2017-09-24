@@ -12,14 +12,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginLeft: 10,
     marginRight: 10,
-    backgroundColor: '#e74c3c',
   },
   doneContainer:{
     backgroundColor: '#2ecc71',
   },
   headerContainer: {
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: '#e74c3c',
     borderWidth: 1,
     borderColor: '#F7F7F7',
   },
@@ -89,17 +88,9 @@ export default class ProceduresRow extends React.Component {
     alert('Task was removed!!');
   }
 
-  editTaskPressed() {
-    const procedureId = this.props.procedure.newId;
-    const projectId = this.props.procedure.projectId;
-    const taskId = this.props.task.idTask;
-
-    this.props.editTask(procedureId, projectId, taskId);
-    this.props.forceRender();
-    alert('Task was edited!!');
-  }
 
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
         <View  style={[styles.headerContainer, this.props.task.done && styles.doneContainer]}>
@@ -118,7 +109,15 @@ export default class ProceduresRow extends React.Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.listButton, styles.btnEdit]}
-            onPress={this.editTaskPressed.bind(this)}
+            onPress={() => navigate('EditTask',
+            {
+              editInfoTask:this.props.task.name,
+              procedureId: this.props.procedure.newId,
+              projectId: this.props.procedure.projectId,
+              taskId: this.props.task.idTask,
+              editTask: this.props.editTask,
+              forceRender: this.props.forceRender,
+            })}
             >
             <Text style={styles.listButtonText}>
               Edit
