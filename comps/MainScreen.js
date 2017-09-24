@@ -54,11 +54,24 @@ export default class MainScreen extends React.Component {
       if(elem.info.id == project.info.id){
         elem.procedures.find((proces, procIndex) => {
           if(proces.newId == procId){
-            return this.state.BuildUP[index].procedures.splice(procIndex,1)
+            console.log('procIndex : '+procIndex)
+            return this.state.BuildUP[index].procedures.splice(procIndex,1);
           }
         })
       }
     })
+    this.saveAsyncData();
+  }
+
+  addProcedure(index, procedure , addId) {
+    const newId = { newId: addId};
+    this.state.BuildUP.find((elem) => {
+      if(elem.info.id == index){
+        Object.assign(procedure, newId)
+        console.log(procedure)
+        return elem.procedures.push(procedure)
+      }
+    }),
     this.saveAsyncData();
   }
 
@@ -72,18 +85,6 @@ export default class MainScreen extends React.Component {
         return;
       }
     })
-    this.saveAsyncData();
-  }
-
-  addProcedure(index, procedure , addId) {
-
-    const newId = { newId: addId};
-    this.state.BuildUP.find((elem) => {
-      if(elem.info.id == index){
-        Object.assign(procedure, newId)
-        return elem.procedures.push(procedure)
-      }
-    }),
     this.saveAsyncData();
   }
 

@@ -48,7 +48,6 @@ export default class ProjectDetails extends React.Component {
   };
 
   render() {
-    console.log(this.props)
     return (
         <ProjectDetailsScreen
           screenProps={this.props.navigation}

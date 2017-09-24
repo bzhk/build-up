@@ -30,17 +30,15 @@ const styles = StyleSheet.create({
 export default class ProcInfo extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props.screenProps.state.params.rowData.procedures.length)
-    console.log(props.screenProps.state.params.rowData.procedures.length+1)
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows(props.screenProps.state.params.rowData.procedures),
     };
+    console.log(this.state.dataSource);
   }
 
-
   forceRender() {
-    const dataSource =  this.state.dataSource.cloneWithRows(this.props.screenProps.state.params.rowData.procedures);
+    const dataSource =  new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(this.props.screenProps.state.params.rowData.procedures);
     this.setState({dataSource});
   }
 
@@ -64,6 +62,7 @@ export default class ProcInfo extends React.Component {
       return (
         <View style={styles.container}>
             <ListView
+              key={this.props.screenProps.state.params.rowData.procedures}
               dataSource={this.state.dataSource}
               renderRow={(rowData) =>
                 <ProcRow

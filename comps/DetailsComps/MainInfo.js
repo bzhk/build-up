@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
 export default class MainInfo extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
   }
 
   removeProjectPerm() {

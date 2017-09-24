@@ -45,6 +45,7 @@ export default class ProcRow extends React.Component {
     super(props);
   }
   removeProcedurePerm() {
+    console.log(this.props.procRow)
     this.props.removeProcedure(this.props.procRow.newId, this.props.targetProject);
     this.props.forceRender();
     alert('Procedure was removed!');

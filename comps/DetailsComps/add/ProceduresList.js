@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
 export default class ProceduresList extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.state = {};
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
@@ -59,7 +58,7 @@ export default class ProceduresList extends React.Component {
                   procRow={rowData}
                   addProcedure={this.props.navigation.state.params.addProcedure}
                   targetProject={this.props.navigation.state.params.targetProject}
-                  
+
                 />
                 }
             />
