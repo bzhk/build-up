@@ -36,8 +36,8 @@ export default class AddProcedureLib extends React.Component {
       return a.idProc - b.idProc
     });
     this.state = {
+      idProc: proceduresArr.length>0?proceduresArr[proceduresArr.length-1].idProc +1 : 1,
       name: '',
-      idTask: proceduresArr.length>0?proceduresArr[proceduresArr.length-1].idProc +1 : 1,
       done: false,
       tasks: [],
     }

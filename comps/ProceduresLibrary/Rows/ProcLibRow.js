@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 export default class ProcLibRow extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
+
   }
 
   removeProcedurePerm() {
@@ -73,7 +73,7 @@ export default class ProcLibRow extends React.Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.btnProcs, styles.btnEdit]}
-            onPress={this.props.showTasks}
+            onPress={this.props.editProcedureLib}
             >
             <Text style={styles.txtProcs}>
               Edit

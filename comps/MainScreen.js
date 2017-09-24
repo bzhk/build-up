@@ -60,7 +60,7 @@ export default class MainScreen extends React.Component {
   removeProcedureLib( procedureId ) {
     this.state.Procedures.find((elem, index) => {
       if(elem.idProc == procedureId){
-        this.state.Procedures.splice(index, 1);
+        return this.state.Procedures.splice(index, 1);
       }
     });
     this.saveAsyncData('Procedures');
@@ -68,6 +68,17 @@ export default class MainScreen extends React.Component {
 
   addProcedureLib( newProcedure ) {
     this.state.Procedures.push(newProcedure)
+    this.saveAsyncData('Procedures');
+  }
+
+  editProcedureLib( newName, id ) {
+    console.log(newName)
+    this.state.Procedures.find((elem) => {
+      if(elem.idProc == id){
+        console.log(elem)
+        return elem.name = newName;
+      }
+    });
     this.saveAsyncData('Procedures');
   }
 
@@ -209,6 +220,7 @@ export default class MainScreen extends React.Component {
                 procedures: this.state.Procedures,
                 removeProcedureLib: this.removeProcedureLib.bind(this),
                 addProcedureLib: this.addProcedureLib.bind(this),
+                editProcedureLib: this.editProcedureLib.bind(this),
               })}
               />
           </View>

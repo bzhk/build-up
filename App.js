@@ -12,7 +12,9 @@ import EditProjectInfo from './comps/DetailsComps/add/EditProjectInfo';
 import EditTask from './comps/DetailsComps/add/EditTask';
 import LibraryList from './comps/ProceduresLibrary/LibraryList';
 import ProcLibRow from './comps/ProceduresLibrary/Rows/ProcLibRow';
+import ProceduresDetailsLib from './comps/ProceduresLibrary/Rows/ProceduresDetailsLib';
 import AddProcedureLib from './comps/ProceduresLibrary/AddProcedureLib';
+import EditProcedureLib from './comps/ProceduresLibrary/add/EditProcedureLib';
 
 
 const styles = StyleSheet.create({
@@ -37,6 +39,8 @@ const Navigation = StackNavigator({
   LibraryList: { screen: LibraryList},
   ProcLibRow: { screen: ProcLibRow},
   AddProcedureLib: { screen: AddProcedureLib},
+  EditProcedureLib: { screen: EditProcedureLib},
+  ProceduresDetailsLib: { screen: ProceduresDetailsLib},
 });
 
 export default class App extends React.Component {
