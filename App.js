@@ -16,6 +16,7 @@ import ProceduresDetailsLib from './comps/ProceduresLibrary/Rows/ProceduresDetai
 import AddProcedureLib from './comps/ProceduresLibrary/AddProcedureLib';
 import EditProcedureLib from './comps/ProceduresLibrary/add/EditProcedureLib';
 import EditTaskLib from './comps/ProceduresLibrary/add/EditTaskLib';
+import AddNewTaskLib from './comps/ProceduresLibrary/add/AddNewTaskLib';
 
 
 const styles = StyleSheet.create({
@@ -43,6 +44,7 @@ const Navigation = StackNavigator({
   EditProcedureLib: { screen: EditProcedureLib},
   ProceduresDetailsLib: { screen: ProceduresDetailsLib},
   EditTaskLib: { screen: EditTaskLib},
+  AddNewTaskLib: { screen: AddNewTaskLib},
 });
 
 export default class App extends React.Component {

@@ -106,10 +106,18 @@ export default class MainScreen extends React.Component {
     this.saveAsyncData('Procedures');
   }
 
-  addTaskLib(procedureId, taskId, task) {
-    console.log(procedureId)
-    console.log(taskId)
-    console.log(task)
+  addTaskLib(name, procedId, idTask) {
+    const newTask = {
+      idTask: idTask,
+      name: name,
+      done: false,
+    };
+    this.state.Procedures.find((elem) => {
+      if(elem.idProc == procedId){
+        return elem.tasks.push(newTask);
+      }
+    });
+    this.saveAsyncData('Procedures');
   }
 
   removeProcedure(procId, project) {

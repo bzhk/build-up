@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 
 
 
-export default class AddNewTask extends React.Component {
+export default class AddNewTaskLib extends React.Component {
   constructor(props) {
     super(props);
     this.state = {text: ''};
@@ -41,12 +41,10 @@ export default class AddNewTask extends React.Component {
       return a.idTask - b.idTask;
     });
     const idTask = taskArr.length>0?taskArr[taskArr.length-1].idTask+1 : 1;
-    const projectId = this.props.navigation.state.params.procedure.projectId;
-    const procedId = this.props.navigation.state.params.procedure.newId;
+    const procedId = this.props.navigation.state.params.procedure.idProc;
     const name = this.state.text;
-    this.props.navigation.state.params.addNewTask(name, projectId, procedId, idTask);
+    this.props.navigation.state.params.addTaskLib(name, procedId, idTask);
     this.props.navigation.state.params.forceRender();
-    this.props.navigation.state.params.forceRenderMainList();
     const backAction = NavigationActions.back({
       key: null
     });

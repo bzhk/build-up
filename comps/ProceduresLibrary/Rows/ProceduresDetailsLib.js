@@ -69,12 +69,11 @@ export default class ProceduresDetails extends React.Component {
         />
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigate('AddTaskLib',
+          onPress={() => navigate('AddNewTaskLib',
           {
             addTaskLib: this.props.navigation.state.params.addTaskLib,
             forceRender: this.forceRender.bind(this),
             procedure: this.props.navigation.state.params.rowData,
-            forceRenderMainList: this.props.navigation.state.params.forceRenderMainList,
           })}
           >
           <Text style={styles.buttonText}>
