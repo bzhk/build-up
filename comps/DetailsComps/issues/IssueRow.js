@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   label: {
-    backgroundColor: '#fff',
+    backgroundColor: '#e74c3c',
     borderWidth: 1,
     borderColor: '#F7F7F7',
     padding: 10,
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     fontWeight: '300',
   },
   btnProcs: {
-    backgroundColor: '#1abc9c',
+    backgroundColor: '#e74c3c',
     flex: 2,
     alignItems: 'center',
     padding: 10,
@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
   txtProcs:{
     color: '#fafafa',
   },
+  textBC:{
+    backgroundColor: '#1abc9c',
+  },
 });
 
 export default class IssueRow extends React.Component {
@@ -45,30 +48,40 @@ export default class IssueRow extends React.Component {
     super(props);
   }
 
-  removeProcedurePerm() {
-    this.props.removeIssue();
+  removeIssuePerm() {
+    const projectId = this.props.projectInfo.info.id;
+    const issueId = this.props.issueRow.idIssue;
+    this.props.removeIssue(projectId, issueId);
     this.props.forceRender();
-    alert('Procedure was removed!');
+    alert('Issue was removed!');
+  }
+
+  fixedIssue() {
+    const projectId = this.props.projectInfo.info.id;
+    const issueId = this.props.issueRow.idIssue;
+    this.props.doneIssue(projectId, issueId);
+    this.props.forceRender();
   }
 
   render(){
+    console.log(this.props.issueRow.solved);
     return (
       <View style={styles.container}>
-        <Text style={styles.label}>
-            {this.props.procRow.name}
+        <Text style={[styles.label, this.props.issueRow.solved && styles.textBC]}>
+            {this.props.issueRow.name}
         </Text>
         <View style={styles.flexRow}>
           <TouchableOpacity
-            style={styles.btnProcs}
-            onPress={this.props.showTasks}
+            style={[styles.btnProcs, this.props.issueRow.solved && styles.textBC]}
+            onPress={this.fixedIssue.bind(this)}
             >
             <Text style={styles.txtProcs}>
-              Fixed
+              {this.props.issueRow.solved?'Fixed':'Not Fixed'}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.btnRemove}
-            onPress={this.removeProcedurePerm.bind(this)}
+            onPress={this.removeIssuePerm.bind(this)}
             >
             <Text style={styles.txtProcs}>
               Remove

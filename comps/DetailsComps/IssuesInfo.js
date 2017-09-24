@@ -43,14 +43,16 @@ export default class IssuesInfo extends React.Component {
     title: 'Issues Info',
   };
   render() {
-    const issues = this.props.screenProps.state.params.rowData.issues;
     return (
       <View style={styles.container}>
           <ListView
             dataSource={this.state.dataSource}
             renderRow={(rowData) =>
               <IssueRow
-                procRow={rowData}
+                issueRow={rowData}
+                projectInfo={this.props.screenProps.state.params.rowData}
+                doneIssue={this.props.screenProps.state.params.doneIssue}
+                removeIssue={this.props.screenProps.state.params.removeIssue}
                 addIssue={() => navigate('Procedures',
                   {
                     forceRenderMainList: this.forceRender.bind(this),

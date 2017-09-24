@@ -12,6 +12,7 @@ export const Projects =  [
     ],
     issues:[
       {
+        idIssue: 1,
         name: 'Dziki atakują',
         solved: false,
       }
@@ -26,14 +27,16 @@ export const Projects =  [
       endDate: '',
     },
     procedures:[
-      
+
     ],
     issues: [
       {
+        idIssue: 1,
         name: 'Brak rąk do pracy',
         solved: false,
       },
       {
+        idIssue: 2,
         name: 'Brak łopat',
         solved: false,
       }

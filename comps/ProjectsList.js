@@ -85,11 +85,14 @@ export default class ProjectsList extends React.Component {
                   removeProject: this.props.removeProject,
                   removeProcedure: this.props.removeProcedure,
                   removeTask: this.props.removeTask,
+                  removeIssue: this.props.removeIssue,
                   doneTask: this.props.doneTask,
+                  doneIssue: this.props.doneIssue,
                   editTask: this.props.editTask,
                   editInfoProject: this.props.editInfoProject,
                   addNewTask: this.props.addNewTask,
                   addProcedure: this.props.addProcedure,
+
                 })
                 }
               />
