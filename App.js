@@ -10,6 +10,8 @@ import AddNewProject from './comps/DetailsComps/add/AddNewProject';
 import ProceduresList from './comps/DetailsComps/add/ProceduresList';
 import EditProjectInfo from './comps/DetailsComps/add/EditProjectInfo';
 import EditTask from './comps/DetailsComps/add/EditTask';
+import LibraryList from './comps/ProceduresLibrary/LibraryList';
+import ProcLibRow from './comps/ProceduresLibrary/Rows/ProcLibRow';
 
 
 const styles = StyleSheet.create({
@@ -31,6 +33,8 @@ const Navigation = StackNavigator({
   ProceduresList: { screen: ProceduresList},
   EditProjectInfo: { screen: EditProjectInfo},
   EditTask: { screen: EditTask},
+  LibraryList: { screen: LibraryList},
+  ProcLibRow: { screen: ProcLibRow},
 });
 
 export default class App extends React.Component {

@@ -67,6 +67,7 @@ export default class AddNewTask extends React.Component {
         <TextInput
           onChangeText={(text) => this.setState({text})}
           style={styles.input}
+          placeholder={'Name'}
         />
         <TouchableOpacity
           style={styles.addButton}

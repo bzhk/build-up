@@ -25,19 +25,27 @@ export default class MainScreen extends React.Component {
       }
       this.setState({"BuildUP": JSON.parse(value)});
     }).done();
+
+    AsyncStorage.getItem("Procedures").then((value) => {
+      if(!value){
+        AsyncStorage.setItem("Procedures", JSON.stringify(Procedures));
+      }
+      this.setState({"Procedures": JSON.parse(value)});
+    }).done();
   }
 
 
-  saveAsyncData() {
+  saveAsyncData( name ) {
+    const obj = {}
     this.setState(
-      { BuildUP: this.state.BuildUP }
+      obj[name] = this.state[name]
     );
-    AsyncStorage.setItem("BuildUP", JSON.stringify(this.state.BuildUP));
+    AsyncStorage.setItem(name, JSON.stringify(this.state[name]));
   }
 
   addNewProject(project) {
     this.state.BuildUP.push( {info:project,procedures:[],issues:[]} );
-    this.saveAsyncData();
+    this.saveAsyncData('BuildUP');
   }
 
   removeProject(project) {
@@ -46,7 +54,20 @@ export default class MainScreen extends React.Component {
         return this.state.BuildUP.splice(index,1)
       }
     });
-    this.saveAsyncData();
+    this.saveAsyncData('BuildUP');
+  }
+
+  removeProcedureLib( procedureId ) {
+    this.state.Procedures.find((elem, index) => {
+      if(elem.idProc == procedureId){
+        this.state.Procedures.splice(index, 1);
+      }
+    });
+    // this.saveAsyncData('Procedures');
+  }
+
+  addProcedureLib( procedureId ) {
+    console.log( procedureId )
   }
 
   removeProcedure(procId, project) {
@@ -59,7 +80,7 @@ export default class MainScreen extends React.Component {
         });
       }
     });
-    this.saveAsyncData();
+    this.saveAsyncData('BuildUP');
   }
 
   removeTask(procedureId, projectId, taskId) {
@@ -76,7 +97,7 @@ export default class MainScreen extends React.Component {
         })
       }
     })
-    this.saveAsyncData();
+    this.saveAsyncData('BuildUP');
   }
 
   doneTask(procedureId, projectId, taskId) {
@@ -93,7 +114,7 @@ export default class MainScreen extends React.Component {
         })
       }
     })
-    this.saveAsyncData();
+    this.saveAsyncData('BuildUP');
   }
 
   editTask(procedureId, projectId, taskId, newName) {
@@ -110,7 +131,7 @@ export default class MainScreen extends React.Component {
         })
       }
     })
-    this.saveAsyncData();
+    this.saveAsyncData('BuildUP');
   }
 
   addProcedure(index, procedure , addId) {
@@ -122,7 +143,7 @@ export default class MainScreen extends React.Component {
         return elem.procedures.push(procedure);
       }
     });
-    this.saveAsyncData();
+    this.saveAsyncData('BuildUP');
   }
 
   addNewTask(name, projectId, procedureId, idTask) {
@@ -140,7 +161,7 @@ export default class MainScreen extends React.Component {
         })
       }
     })
-    this.saveAsyncData();
+    this.saveAsyncData('BuildUP');
   }
 
   editInfoProject(info, index) {
@@ -153,7 +174,7 @@ export default class MainScreen extends React.Component {
         return;
       }
     });
-    this.saveAsyncData();
+    this.saveAsyncData('BuildUP');
   }
 
   static navigationOptions = {
@@ -182,6 +203,11 @@ export default class MainScreen extends React.Component {
                   id: this.state.BuildUP.length>0?this.state.BuildUP[this.state.BuildUP.length-1].info.id+1:1,
                 }
               )}
+              showLib={() => navigate('LibraryList' ,
+              {
+                procedures: this.state.Procedures,
+                removeProcedureLib: this.removeProcedureLib.bind(this),
+              })}
               />
           </View>
       );

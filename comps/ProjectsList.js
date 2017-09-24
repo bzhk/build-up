@@ -15,6 +15,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
+  libraryButton: {
+    backgroundColor: '#9b59b6',
+    margin: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
   buttonText:{
     color: '#fafafa',
     fontSize: 20,
@@ -55,7 +62,7 @@ export default class ProjectsList extends React.Component {
                   doneTask: this.props.doneTask,
                   editTask: this.props.editTask,
                   editInfoProject: this.props.editInfoProject,
-                  addNewTask: this.props.addNewTask,      
+                  addNewTask: this.props.addNewTask,
                   addProcedure: this.props.addProcedure,
                 })
                 }
@@ -68,6 +75,14 @@ export default class ProjectsList extends React.Component {
           >
           <Text style={styles.buttonText}>
             Add new project
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.libraryButton}
+          onPress={this.props.showLib}
+          >
+          <Text style={styles.buttonText}>
+            Procedures' library
           </Text>
         </TouchableOpacity>
       </View>
