@@ -81,7 +81,7 @@ export default class MainInfo extends React.Component {
           onPress={() => navigate('EditProjectInfo',
           {
             forceRender: this.forceRender.bind(this),
-            editInfoProject:this.props.screenProps.state.params.editInfoProject,
+            editInfoProject: this.props.screenProps.state.params.editInfoProject,
             info: info,
           }
           )}

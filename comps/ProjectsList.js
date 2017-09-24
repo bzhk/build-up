@@ -53,6 +53,7 @@ export default class ProjectsList extends React.Component {
   }
 
   onChangeFiltr(text){
+
     const reg = new RegExp(text,"ig");
     const filter = this.props.projects.filter((elem) => {
        if(reg.test(elem.info.name)){
@@ -74,6 +75,8 @@ export default class ProjectsList extends React.Component {
           placeholder={'Search for name'}
         />
         <ListView
+          key={this.state.dataSource}
+          enableEmptySections={true}
           dataSource={this.state.dataSource}
           renderRow={(rowData) =>
               <ProjectRow
@@ -93,7 +96,6 @@ export default class ProjectsList extends React.Component {
                   addNewTask: this.props.addNewTask,
                   addProcedure: this.props.addProcedure,
                   addNewIssue: this.props.addNewIssue,
-
                 })
                 }
               />

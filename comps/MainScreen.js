@@ -228,6 +228,7 @@ export default class MainScreen extends React.Component {
         elem.info.endDate = info.endDate;
       }
     });
+
     this.saveAsyncData('BuildUP');
   }
 
