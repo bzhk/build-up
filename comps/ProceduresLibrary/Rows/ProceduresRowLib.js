@@ -70,11 +70,10 @@ export default class ProceduresRowLib extends React.Component {
 
 
   removeTaskPressed() {
-    const procedureId = this.props.procedure.newId;
-    const projectId = this.props.procedure.projectId;
+    const procedureId = this.props.procedure.idProc;
     const taskId = this.props.task.idTask;
 
-    this.props.removeTask(procedureId, projectId, taskId);
+    this.props.removeTaskLib(procedureId, taskId);
     this.props.forceRender();
     this.props.forceRenderMainList();
     alert('Task was removed!!');

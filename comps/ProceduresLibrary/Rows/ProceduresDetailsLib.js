@@ -61,17 +61,17 @@ export default class ProceduresDetails extends React.Component {
               forceRender={this.forceRender.bind(this)}
               procedure={this.props.navigation.state.params.rowData}
               editTaskLib={this.props.navigation.state.params.editTaskLib}
-              removeTask={this.props.navigation.state.params.removeTask}
+              removeTaskLib={this.props.navigation.state.params.removeTaskLib}
               navigation={this.props.navigation}
-              forceRenderMainList={this.props.navigation.state.params.forceRenderMainList}
+              forceRenderMainList={this.props.navigation.state.params.forceRender}
             />
           }
         />
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigate('AddNewTask',
+          onPress={() => navigate('AddTaskLib',
           {
-            addNewTask: this.props.navigation.state.params.addNewTask,
+            addTaskLib: this.props.navigation.state.params.addTaskLib,
             forceRender: this.forceRender.bind(this),
             procedure: this.props.navigation.state.params.rowData,
             forceRenderMainList: this.props.navigation.state.params.forceRenderMainList,

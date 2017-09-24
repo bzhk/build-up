@@ -69,6 +69,8 @@ export default class LibraryList extends React.Component {
                     {
                       rowData,
                       editTaskLib: this.props.navigation.state.params.editTaskLib,
+                      addTaskLib: this.props.navigation.state.params.addTaskLib,
+                      removeTaskLib: this.props.navigation.state.params.removeTaskLib,
                       forceRender: this.forceRender.bind(this),
                     })}
                   forceRender={this.forceRender.bind(this)}

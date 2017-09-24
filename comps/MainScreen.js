@@ -85,12 +85,31 @@ export default class MainScreen extends React.Component {
       if(elem.idProc == procedureId){
         elem.tasks.find((taskElem) => {
           if(taskElem.idTask == taskId){
-            taskElem.name = newName
+            return taskElem.name = newName;
           }
         });
       }
     });
     this.saveAsyncData('Procedures');
+  }
+
+  removeTaskLib(procedureId, taskId) {
+    this.state.Procedures.find((elem) => {
+      if(elem.idProc == procedureId){
+        elem.tasks.find((taskElem, taskIndex) => {
+          if(taskElem.idTask == taskId){
+            return elem.tasks.splice(taskIndex, 1);
+          }
+        });
+      }
+    });
+    this.saveAsyncData('Procedures');
+  }
+
+  addTaskLib(procedureId, taskId, task) {
+    console.log(procedureId)
+    console.log(taskId)
+    console.log(task)
   }
 
   removeProcedure(procId, project) {
@@ -233,6 +252,8 @@ export default class MainScreen extends React.Component {
                 addProcedureLib: this.addProcedureLib.bind(this),
                 editProcedureLib: this.editProcedureLib.bind(this),
                 editTaskLib: this.editTaskLib.bind(this),
+                removeTaskLib: this.removeTaskLib.bind(this),
+                addTaskLib: this.addTaskLib.bind(this),
               })}
               />
           </View>
