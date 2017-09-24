@@ -42,11 +42,7 @@ export default class ProceduresList extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-      console.log('wywołano componentWillReceiveProps')
-      const dataSource = this.state.dataSource.cloneWithRows(nextProps.navigation.state.params.ProceduresList);
-      this.setState({dataSource});
-  }
+
 
   static navigationOptions = {
     title: 'Add New Procedure',
@@ -63,6 +59,7 @@ export default class ProceduresList extends React.Component {
                   procRow={rowData}
                   addProcedure={this.props.navigation.state.params.addProcedure}
                   targetProject={this.props.navigation.state.params.targetProject}
+                  
                 />
                 }
             />

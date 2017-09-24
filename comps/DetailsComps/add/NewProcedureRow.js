@@ -28,6 +28,7 @@ export default class NewProcRow extends React.Component {
 
   addNewProcedure() {
     this.props.addProcedure(this.props.targetProject.info.id, this.props.procRow, this.props.targetProject.procedures.length+1);
+    this.props.navigation.state.params.forceRender();
     alert('Procedure was added!');
     const backAction = NavigationActions.back({
       key: null

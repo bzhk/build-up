@@ -39,9 +39,9 @@ export default class ProcInfo extends React.Component {
   }
 
 
-  componentWillReceiveProps(nextProps) {
-      const dataSource = this.state.dataSource.cloneWithRows(nextProps.state.params.rowData.procedures);
-      this.setState({dataSource});
+  forceRender() {
+    const dataSource =  this.state.dataSource.cloneWithRows(this.props.screenProps.state.params.rowData.procedures);
+    this.setState({dataSource});
   }
 
   componentDidMount(){
@@ -69,6 +69,7 @@ export default class ProcInfo extends React.Component {
                 <ProcRow
                   procRow={rowData}
                   showTasks={() => navigate('Procedures', {rowData})}
+                  forceRender={this.forceRender.bind(this)}
                   removeProcedure={this.props.screenProps.state.params.removeProcedure}
                   targetProject={this.props.screenProps.state.params.rowData}
                 />
@@ -80,6 +81,7 @@ export default class ProcInfo extends React.Component {
                  ProceduresList,
                  addProcedure: this.props.screenProps.state.params.addProcedure,
                  targetProject: this.props.screenProps.state.params.rowData,
+                 forceRender: this.forceRender.bind(this),
                })}
               >
               <Text style={styles.buttonText}>
