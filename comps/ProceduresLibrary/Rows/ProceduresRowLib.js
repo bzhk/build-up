@@ -67,8 +67,6 @@ export default class ProceduresRowLib extends React.Component {
     super(props);
   }
 
-
-
   removeTaskPressed() {
     const procedureId = this.props.procedure.idProc;
     const taskId = this.props.task.idTask;

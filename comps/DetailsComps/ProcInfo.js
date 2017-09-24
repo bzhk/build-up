@@ -41,14 +41,7 @@ export default class ProcInfo extends React.Component {
     this.setState({dataSource});
   }
 
-  componentDidMount(){
-    AsyncStorage.getItem("Procedures").then((value) => {
-      if(!value){
-        AsyncStorage.setItem("Procedures", JSON.stringify(Procedures));
-      }
-      this.setState({"Procedures": JSON.parse(value)});
-    }).done();
-  }
+
 
   static navigationOptions = {
     title: 'Procedures Info',
@@ -56,12 +49,13 @@ export default class ProcInfo extends React.Component {
 
   render() {
     const {navigate} = this.props.screenProps;
-    const ProceduresList  = this.state.Procedures;
+    const ProceduresList  = this.props.screenProps.state.params.procedures;
+    console.log(ProceduresList)
     const removeTask = this.props.screenProps.state.params.removeTask;
     const doneTask = this.props.screenProps.state.params.doneTask;
     const editTask = this.props.screenProps.state.params.editTask;
     const addNewTask = this.props.screenProps.state.params.addNewTask;
-    if(this.state.Procedures) {
+    if(ProceduresList) {
       return (
         <View style={styles.container}>
             <ListView

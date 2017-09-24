@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, AsyncStorage, Alert } from 'react-native';
 import {Projects} from '../data/ExampleProjects';
 import {Procedures} from '../data/Procedures';
 import ProjectsList from './ProjectsList';
@@ -19,6 +19,7 @@ export default class MainScreen extends React.Component {
   }
 
   componentDidMount(){
+
     AsyncStorage.getItem("BuildUP").then((value) => {
       if(!value){
         AsyncStorage.setItem("BuildUP", JSON.stringify(Projects));
@@ -152,11 +153,17 @@ export default class MainScreen extends React.Component {
 
   doneTask(procedureId, projectId, taskId) {
     this.state.BuildUP.find((elem, index) => {
+      console.log(elem)
       if(elem.info.id == projectId){
+        console.log(elem);
         elem.procedures.find((proceElem, proceIndex) => {
-          if(proceElem.newId == projectId){
+
+          if(proceElem.newId == procedureId){
+            console.log(proceElem);
             proceElem.tasks.find((taskElem, taskIndex) => {
+
               if(taskElem.idTask == taskId){
+                console.log(taskElem);
                 return taskElem.done?taskElem.done=false:taskElem.done=true;
               }
             })
@@ -247,6 +254,7 @@ export default class MainScreen extends React.Component {
               editInfoProject={this.editInfoProject.bind(this)}
               addNewTask={this.addNewTask.bind(this)}
               addProcedure={this.addProcedure.bind(this)}
+              procedures= {this.state.Procedures}
               addNewProject={() => navigate( 'AddNewProject' ,
                 {
                   addNewProject: this.addNewProject.bind(this),

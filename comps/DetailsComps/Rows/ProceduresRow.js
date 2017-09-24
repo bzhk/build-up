@@ -65,13 +65,13 @@ const styles = StyleSheet.create({
 export default class ProceduresRow extends React.Component {
   constructor(props) {
     super(props);
+
   }
 
   doneTaskPressed() {
     const procedureId = this.props.procedure.newId;
     const projectId = this.props.procedure.projectId;
     const taskId = this.props.task.idTask;
-
     this.props.doneTask(procedureId, projectId, taskId);
     this.props.forceRender();
     this.props.forceRenderMainList();
@@ -79,10 +79,13 @@ export default class ProceduresRow extends React.Component {
   }
 
   removeTaskPressed() {
+    console.log(this.props)
     const procedureId = this.props.procedure.newId;
     const projectId = this.props.procedure.projectId;
     const taskId = this.props.task.idTask;
-
+    console.log('procedureId '+procedureId)
+    console.log('projectId '+projectId)
+    console.log('taskId '+taskId)
     this.props.removeTask(procedureId, projectId, taskId);
     this.props.forceRender();
     this.props.forceRenderMainList();

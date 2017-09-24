@@ -56,6 +56,7 @@ export default class ProjectsList extends React.Component {
                 project={rowData}
                 projectDetails={() => navigate('Details', {
                   rowData,
+                  procedures: this.props.procedures,
                   removeProject: this.props.removeProject,
                   removeProcedure: this.props.removeProcedure,
                   removeTask: this.props.removeTask,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 
@@ -43,6 +43,19 @@ export default class MainInfo extends React.Component {
     alert('Project was removed!');
   }
 
+  showAlert() {
+    Alert.alert(
+      'Remove project',
+      'Are you sure?',
+      [
+        {text: 'OK', onPress: () => {
+          this.removeProjectPerm();
+        }},
+        {text: 'Cancel', onPress: () => null},
+      ],
+      { cancelable: true }
+    )
+  }
   static navigationOptions = {
     title: 'Main Info',
   };
@@ -73,7 +86,7 @@ export default class MainInfo extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={this.removeProjectPerm.bind(this)}
+          onPress={this.showAlert.bind(this)}
           >
           <Text style={styles.buttonText}>
             Remove Project
