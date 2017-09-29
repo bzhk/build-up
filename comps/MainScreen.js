@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, AsyncStorage, Alert } from 'react-native';
 import {Projects} from '../data/ExampleProjects';
-import {Proceduress} from '../data/Procedures';
+import {Procedures} from '../data/Procedures';
 import ProjectsList from './ProjectsList';
 
 
