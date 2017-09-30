@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, DatePickerAndroid } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 
@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
     margin: 20,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  btnDate:{
+    backgroundColor: '#34495e',
+    borderColor: '#34495e',
   },
   buttonText:{
     color: '#fafafa',
@@ -41,6 +45,23 @@ export default class EditProjectInfo extends React.Component {
     };
   }
 
+  startDate() {
+    const {action, year, month, day} = DatePickerAndroid.open({
+      date: new Date()
+    }).then((val)=> {
+      console.log(`${val.day}.${val.month}.${val.year}`)
+      this.setState({startDate: `${val.day}.${val.month}.${val.year}`})
+    });
+  }
+
+  endDate() {
+    const {action, year, month, day} = DatePickerAndroid.open({
+      date: new Date()
+    }).then((val)=> {
+      console.log(`${val.day}.${val.month}.${val.year}`)
+      this.setState({endDate: `${val.day}.${val.month}.${val.year}`})
+    });
+  }
 
   odEdit(){
     const id = this.props.navigation.state.params.info.id;
@@ -77,18 +98,22 @@ export default class EditProjectInfo extends React.Component {
           value={this.state.place}
           style={styles.input}
         />
-        <Text>Start date: </Text>
-        <TextInput
-          onChangeText={(text) => this.setState({startDate:text})}
-          value={this.state.startDate}
-          style={styles.input}
-        />
-        <Text>End date: </Text>
-        <TextInput
-          onChangeText={(text) => this.setState({endDate:text})}
-          value={this.state.endDate}
-          style={styles.input}
-        />
+        <TouchableOpacity
+          style={[styles.addButton, styles.btnDate]}
+          onPress={this.startDate.bind(this)}
+          >
+          <Text style={styles.buttonText}>
+              {this.state.startDate?'Start: ' + this.state.startDate:'Pick start date'}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.addButton, styles.btnDate]}
+          onPress={this.endDate.bind(this)}
+          >
+          <Text style={styles.buttonText}>
+              {this.state.endDate?'End: ' + this.state.endDate:'Pick end date'}
+          </Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={styles.addButton}
           onPress={this.odEdit.bind(this)}

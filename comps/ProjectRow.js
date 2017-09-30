@@ -40,7 +40,7 @@ export default class ProjectRow extends React.Component {
       <View style={styles.container}>
         <Text style={styles.label}>
             {"Name: "+this.props.project.info.name + "\nPlace: " + this.props.project.info.place + "\n"}
-            {"Date: " + this.props.project.info.startDate + " / " + this.props.project.info.endDate}
+            {"Date: " + this.props.project.info.startDate + " - " + this.props.project.info.endDate}
           </Text>
           <TouchableOpacity
             style={styles.btnDetails}
