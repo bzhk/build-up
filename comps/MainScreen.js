@@ -149,7 +149,6 @@ export default class MainScreen extends React.Component {
         });
       }
     });
-    console.log(this.state.Procedures);
     this.saveAsyncData('BuildUP');
   }
 
@@ -160,7 +159,7 @@ export default class MainScreen extends React.Component {
           if(proceElem.newId == procedureId){
             proceElem.tasks.find((taskElem, taskIndex) => {
               if(taskElem.idTask == taskId){
-                taskElem.done?taskElem.done=false:taskElem.done=true;
+                taskElem.done=!taskElem.done;
               }
             })
           }
@@ -194,7 +193,6 @@ export default class MainScreen extends React.Component {
     this.state.BuildUP.find((elem) => {
       if(elem.info.id == index){
         Object.assign(procedure, newId, projectId);
-        console.log(procedure)
         elem.procedures.push(procedure);
       }
     });
@@ -235,7 +233,6 @@ export default class MainScreen extends React.Component {
   removeIssue(projectId, issueId) {
     this.state.BuildUP.find((elem) => {
       if(elem.info.id == projectId){
-        console.log(elem)
         elem.issues.find((taskElem, taskIndex) => {
           if(taskElem.idIssue = issueId){
             return elem.issues.splice(taskIndex, 1);
@@ -262,7 +259,6 @@ export default class MainScreen extends React.Component {
   addNewIssue(projectId, issue){
     this.state.BuildUP.find((elem) => {
       if(elem.info.id == projectId){
-        console.log(issue);
         elem.issues.push(issue)
       }
     });
