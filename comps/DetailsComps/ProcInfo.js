@@ -58,6 +58,7 @@ export default class ProcInfo extends React.Component {
       return (
         <View style={styles.container}>
             <ListView
+              enableEmptySections={true}
               dataSource={this.state.dataSource}
               renderRow={(rowData) =>
                 <ProcRow

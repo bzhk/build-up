@@ -48,12 +48,11 @@ export default class ProjectsList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-      const dataSource = this.state.dataSource.cloneWithRows(nextProps.projects);
+      const dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(nextProps.projects);
       this.setState({dataSource});
   }
 
   onChangeFiltr(text){
-
     const reg = new RegExp(text,"ig");
     const filter = this.props.projects.filter((elem) => {
        if(reg.test(elem.info.name)){
@@ -62,7 +61,6 @@ export default class ProjectsList extends React.Component {
     });
     const dataSource = this.state.dataSource.cloneWithRows(filter);
     this.setState({dataSource});
-
   }
 
   render() {
@@ -75,7 +73,6 @@ export default class ProjectsList extends React.Component {
           placeholder={'Search for name'}
         />
         <ListView
-          key={this.state.dataSource}
           enableEmptySections={true}
           dataSource={this.state.dataSource}
           renderRow={(rowData) =>

@@ -20,7 +20,6 @@ export default class MainScreen extends React.Component {
   }
 
   componentDidMount(){
-
     AsyncStorage.getItem("BuildUP").then((value) => {
       if(!value){
         AsyncStorage.setItem("BuildUP", JSON.stringify(Projects));
@@ -226,7 +225,6 @@ export default class MainScreen extends React.Component {
         elem.info.endDate = info.endDate;
       }
     });
-
     this.saveAsyncData('BuildUP');
   }
 
