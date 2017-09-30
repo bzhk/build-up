@@ -54,32 +54,3 @@ export default class ProjectRow extends React.Component {
     );
   }
 }
-
-ProjectRow.propTypes = {
-  project: PropTypes.shape({
-    info: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      place: PropTypes.string.isRequired,
-      startDate: PropTypes.string.isRequired,
-      endDate: PropTypes.string.isRequired,
-    }).isRequired,
-    procedures: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        done: PropTypes.bool.isRequired,
-        tasks: PropTypes.arrayOf(
-          PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            done: PropTypes.bool.isRequired,
-          })
-        ),
-      }),
-    ).isRequired,
-    issues: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        solved: PropTypes.bool.isRequired,
-      }),
-    ).isRequired,
-  }).isRequired,
-};

@@ -20,15 +20,23 @@ const styles = StyleSheet.create({
 export default class NewProcRow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    }
   }
 
+
   addNewProcedure() {
+    console.log(this.props.targetProject.procedures)
     const proceduresArr = this.props.targetProject.procedures;
     const newId = proceduresArr.length>0 ? proceduresArr[proceduresArr.length-1].newId +1 : 1;
-    this.props.addProcedure(this.props.targetProject.info.id, this.props.procRow, newId);
+    const procRow = JSON.parse(JSON.stringify(this.props.procRow));
+    const newProc = {
+      idProc: procRow.idProc,
+      name: procRow.name,
+      done: procRow.done,
+      tasks: procRow.tasks,
+      newId: newId,
+      projectId: this.props.targetProject.info.id,
+    }
+    this.props.addProcedure(this.props.targetProject.info.id, newProc);
     this.props.navigation.state.params.forceRender();
     alert('Procedure was added!');
     const backAction = NavigationActions.back({

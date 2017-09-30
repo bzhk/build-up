@@ -19,6 +19,8 @@ export default class MainScreen extends React.Component {
 
   }
 
+
+
   componentDidMount(){
     AsyncStorage.getItem("BuildUP").then((value) => {
       if(!value){
@@ -27,6 +29,7 @@ export default class MainScreen extends React.Component {
       this.setState({"BuildUP": JSON.parse(value)});
     }).done();
 
+
     AsyncStorage.getItem("Procedures").then((value) => {
       if(!value){
         AsyncStorage.setItem("Procedures", JSON.stringify(Procedures));
@@ -34,7 +37,6 @@ export default class MainScreen extends React.Component {
       this.setState({"Procedures": JSON.parse(value)});
     }).done();
   }
-
 
   saveAsyncData( name ) {
     const obj = {}
@@ -68,7 +70,7 @@ export default class MainScreen extends React.Component {
   }
 
   addProcedureLib( newProcedure ) {
-    this.state.Procedures.push(newProcedure)
+    this.state.Procedures.push(newProcedure);
     this.saveAsyncData('Procedures');
   }
 
@@ -141,7 +143,8 @@ export default class MainScreen extends React.Component {
           if(proceElem.newId && proceElem.newId == procedureId){
             proceElem.tasks.find((taskElem, taskIndex) => {
               if(taskElem.idTask == taskId){
-                 return proceElem.tasks.splice(taskIndex, 1)
+                 proceElem.tasks.splice(taskIndex, 1);
+                 return true;
               }
             });
           }
@@ -185,22 +188,18 @@ export default class MainScreen extends React.Component {
     this.saveAsyncData('BuildUP');
   }
 
-  addProcedure(index, procedure , addId) {
+  addProcedure(index, proc) {
 
-    const newId = { newId: addId};
-    const projectId = { projectId: index};
     this.state.BuildUP.find((elem) => {
       if(elem.info.id == index){
-        Object.assign(procedure, newId, projectId);
-        elem.procedures.push(procedure);
+        elem.procedures.push(proc);
       }
     });
-    this.saveAsyncData('BuildUP');
   }
 
   addNewTask(name, projectId, procedureId, idTask) {
     this.state.BuildUP.find((elem) => {
-      if(elem.info.id = projectId){
+      if(elem.info.id == projectId){
         elem.procedures.find((procedureElem) => {
           if(procedureElem.newId == procedureId){
             const newTask = {
@@ -262,13 +261,14 @@ export default class MainScreen extends React.Component {
     });
   }
 
+
   static navigationOptions = {
     title: 'buildUP',
   };
 
   render() {
     const {navigate} = this.props.navigation;
-    if(this.state.BuildUP ){
+    if(this.state.BuildUP && this.state.Procedures){
       return (
         <View style={styles.container}>
             <ProjectsList
@@ -282,7 +282,8 @@ export default class MainScreen extends React.Component {
               editInfoProject={this.editInfoProject.bind(this)}
               addNewTask={this.addNewTask.bind(this)}
               addProcedure={this.addProcedure.bind(this)}
-              procedures= {this.state.Procedures}
+
+              procedures={this.state.Procedures}
               removeIssue={this.removeIssue.bind(this)}
               doneIssue={this.doneIssue.bind(this)}
               addNewIssue={this.addNewIssue.bind(this)}

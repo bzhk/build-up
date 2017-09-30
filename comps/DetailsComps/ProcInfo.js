@@ -81,6 +81,7 @@ export default class ProcInfo extends React.Component {
             <TouchableOpacity
               style={styles.button}
               onPress={() => navigate('ProceduresList' ,{
+
                  ProceduresList,
                  addProcedure: this.props.screenProps.state.params.addProcedure,
                  targetProject: this.props.screenProps.state.params.rowData,

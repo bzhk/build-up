@@ -75,16 +75,12 @@ export default class ProceduresRow extends React.Component {
     this.props.doneTask(procedureId, projectId, taskId);
     this.props.forceRender();
     this.props.forceRenderMainList();
-
   }
 
   removeTaskPressed() {
     const procedureId = this.props.procedure.newId;
     const projectId = this.props.procedure.projectId;
     const taskId = this.props.task.idTask;
-    console.log('procedureId '+procedureId)
-    console.log('projectId '+projectId)
-    console.log('taskId '+taskId)
     this.props.removeTask(procedureId, projectId, taskId);
     this.props.forceRender();
     this.props.forceRenderMainList();
