@@ -37,6 +37,10 @@ const styles = StyleSheet.create({
 export default class EditProjectInfo extends React.Component {
   constructor(props) {
     super(props);
+
+    let startDateHandler ='';
+    let endDateHandler ='';
+
     this.state = {
       name: this.props.navigation.state.params.info.name,
       place: this.props.navigation.state.params.info.place,
@@ -46,20 +50,42 @@ export default class EditProjectInfo extends React.Component {
   }
 
   startDate() {
-    const {action, year, month, day} = DatePickerAndroid.open({
-      date: new Date()
+    let startDateBef = this.props.navigation.state.params.info.startDate.split('.');
+    let startDateHandler = [
+      startDateBef[1],
+      startDateBef[0],
+      startDateBef[2]
+    ];
+
+    const {action, day, month, year } = DatePickerAndroid.open({
+      date: new Date(this.startDateHandler?this.startDateHandler.split('.'):startDateHandler)
     }).then((val)=> {
-      console.log(`${val.day}.${val.month}.${val.year}`)
-      this.setState({startDate: `${val.day}.${val.month}.${val.year}`})
+      this.startDateHandler = `${val.month+1}.${val.day}.${val.year}`;
+      if(this.endDateHandler && new Date(this.startDateHandler) > new Date(this.endDateHandler)){
+        alert('Start date can\'t be after end date.\nPick again.');
+      } else {
+        val.day ? this.setState({startDate: `${val.day}.${val.month+1}.${val.year}`}) : this.setState({startDate: ``});
+      }
     });
   }
 
   endDate() {
+    let endDateBef = this.props.navigation.state.params.info.endDate.split('.');
+    let endDateHandler = [
+      endDateBef[1],
+      endDateBef[0],
+      endDateBef[2]
+     ];
+
     const {action, year, month, day} = DatePickerAndroid.open({
-      date: new Date()
+      date: new Date(this.endDateHandler?this.endDateHandler.split('.'):endDateHandler)
     }).then((val)=> {
-      console.log(`${val.day}.${val.month}.${val.year}`)
-      this.setState({endDate: `${val.day}.${val.month}.${val.year}`})
+      this.endDateHandler = `${val.month+1}.${val.day}.${val.year}`;
+      if(this.startDateHandler && new Date(this.startDateHandler) > new Date(this.endDateHandler)){
+        alert('End date can\'t be before start date.\nPick again.');
+      } else {
+        val.day ? this.setState({endDate: `${val.day}.${val.month+1}.${val.year}`}) : this.setState({endDate: ``});
+      }
     });
   }
 

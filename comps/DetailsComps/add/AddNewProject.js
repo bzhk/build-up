@@ -38,6 +38,8 @@ const styles = StyleSheet.create({
 export default class AddNewProject extends React.Component {
   constructor(props) {
     super(props);
+    let startDateHandler = '';
+    let endDateHandler = '';
     this.state = {
         id: this.props.navigation.state.params.id,
         name: '',
@@ -57,20 +59,30 @@ export default class AddNewProject extends React.Component {
   }
 
   startDate() {
-    const {action, year, month, day} = DatePickerAndroid.open({
-      date: new Date()
+    const {action, day, month, year } = DatePickerAndroid.open({
+      date: new Date(this.startDateHandler?this.startDateHandler.split('.'):'')
     }).then((val)=> {
-      console.log(`${val.day}.${val.month}.${val.year}`)
-      this.setState({startDate: `${val.day}.${val.month}.${val.year}`})
+      this.startDateHandler = `${val.month+1}.${val.day}.${val.year}`;
+      if(this.endDateHandler && new Date(this.startDateHandler) > new Date(this.endDateHandler)){
+        alert('Start date can\'t be after end date.\nPick again.');
+        this.startDateHandler = '';
+      } else {
+        val.day ? this.setState({startDate: `${val.day}.${val.month+1}.${val.year}`}) : this.setState({startDate: ``});
+      }
     });
   }
 
   endDate() {
     const {action, year, month, day} = DatePickerAndroid.open({
-      date: new Date()
+      date: new Date(this.endDateHandler?this.endDateHandler.split('.'):'')
     }).then((val)=> {
-      console.log(`${val.day}.${val.month}.${val.year}`)
-      this.setState({endDate: `${val.day}.${val.month}.${val.year}`})
+      this.endDateHandler = `${val.month+1}.${val.day}.${val.year}`;
+      if(this.startDateHandler && new Date(this.startDateHandler) > new Date(this.endDateHandler)){
+        alert('End date can\'t be before start date.\nPick again.');
+        this.endDateHandler = '';
+      } else {
+        val.day ? this.setState({endDate: `${val.day}.${val.month+1}.${val.year}`}) : this.setState({endDate: ``});
+      }
     });
   }
 
