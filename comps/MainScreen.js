@@ -22,20 +22,29 @@ export default class MainScreen extends React.Component {
 
 
   componentDidMount(){
+
     AsyncStorage.getItem("BuildUP").then((value) => {
       if(!value){
+        console.log(value)
         AsyncStorage.setItem("BuildUP", JSON.stringify(Projects));
+                      this.setState({"BuildUP": Projects});
+      } else {
+        this.setState({"BuildUP": JSON.parse(value)});
       }
-      this.setState({"BuildUP": JSON.parse(value)});
+
     }).done();
 
 
     AsyncStorage.getItem("Procedures").then((value) => {
       if(!value){
+        console.log(value)
         AsyncStorage.setItem("Procedures", JSON.stringify(Procedures));
+        this.setState({"Procedures": Procedures});
+      } else {
+        this.setState({"Procedures": JSON.parse(value)});
       }
-      this.setState({"Procedures": JSON.parse(value)});
     }).done();
+
   }
 
   saveAsyncData( name ) {
