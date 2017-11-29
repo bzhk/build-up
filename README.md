@@ -5,7 +5,7 @@ React Native(0.47) ToDo application (predefined for builders).
 ## Features
 
 1. Local database storage.
-2. Possibility of creation predefined procedures with task. [code](https://github.com/bzhk/build-up/blob/master/comps/ProceduresLibrary/LibraryList.js)
+2. Possibility of creating predefined procedures with tasks. [code](https://github.com/bzhk/build-up/blob/master/comps/ProceduresLibrary/LibraryList.js)
 3. Adding projects. [code](https://github.com/bzhk/build-up/blob/master/comps/DetailsComps/add/AddNewProject.js)
 4. Control your projects after added. [code](https://github.com/bzhk/build-up/blob/master/comps/ProjectsList.js)
     - Edit project's data. [code](https://github.com/bzhk/build-up/blob/master/comps/DetailsComps/MainInfo.js)
